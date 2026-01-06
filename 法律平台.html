@@ -296,7 +296,7 @@
 <div id="quiz-modal-overlay" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeQuizModal()">
     <div class="bg-white p-12 rounded-[3rem] max-w-3xl w-[95%] shadow-2xl border-t-[14px] border-red-500" onclick="event.stopPropagation()">
         <div class="flex justify-between items-center mb-10">
-            <h3 class="text-3xl font-black text-slate-800 flex items-center gap-4"><span>📝</span> 觀念檢驗實戰 (Quiz)</h3>
+            <h3 class="text-3xl font-black text-slate-800 flex items-center gap-4"><span>📝</span> 試試看！</h3>
             <button onclick="closeQuizModal()" class="text-slate-300 hover:text-slate-600 text-4xl font-black">✕</button>
         </div>
         <div class="bg-slate-50 p-10 rounded-[2.5rem] mb-4 border-2 border-slate-100 shadow-inner overflow-y-auto max-h-[60vh]">
@@ -332,6 +332,12 @@
                         <li>新增情境引言（生活化提問）於法條最上方。</li>
                     </ul>
                 </div>
+				<div class="border-l-4 border-emerald-500 pl-6">
+                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/06 (V0.a)</p>
+                    <ul class="list-disc space-y-2 text-base">
+                        <li>更新網站介面描述</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -341,22 +347,22 @@
 <div id="info-modal-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeInfoModal()">
     <div class="bg-white p-12 rounded-[3rem] max-w-2xl w-[90%] shadow-2xl border-t-[12px] border-blue-900" onclick="event.stopPropagation()">
         <div class="flex justify-between items-center mb-8">
-            <h3 class="text-2xl font-black text-blue-900 flex items-center gap-4"><span>ℹ️</span> 網站資訊與版權</h3>
+            <h3 class="text-2xl font-black text-blue-900 flex items-center gap-4"><span>ℹ️</span> 網站資訊與版權聲明</h3>
             <button onclick="closeInfoModal()" class="text-slate-300 hover:text-slate-600 text-4xl font-black">✕</button>
         </div>
         <div class="bg-slate-50 p-10 rounded-[2.5rem] border shadow-inner max-h-[55vh] overflow-y-auto">
             <div class="space-y-10 text-base font-bold text-slate-700">
                 <section>
-                    <h4 class="text-xl font-black text-slate-800 mb-4 border-l-6 border-blue-500 pl-4 uppercase tracking-tighter">📜 網站歷史 (History)</h4>
+                    <h4 class="text-xl font-black text-slate-800 mb-4 border-l-6 border-blue-500 pl-4 uppercase tracking-tighter">📜 網站資訊</h4>
                     <p class="leading-relaxed">
-                        本站創立於 2026 年，旨在協助外籍人士透過「TBCL 分級華語」理解艱澀法律。
-                        我們將專業術語轉譯為國小生可讀的白話文字，推動法律平權。
+                        本站創立於 2026 年，旨在透過將專業術語依指定等級進行翻譯，協助外籍人士透過理解我國法律。
                     </p>
                 </section>
                 <section>
                     <h4 class="text-xl font-black text-slate-800 mb-4 border-l-6 border-blue-500 pl-4 uppercase tracking-tighter">⚖️ 版權聲明</h4>
                     <p class="leading-relaxed mb-4">
-                        本站法條原文引自全國法規資料庫。白話解釋、引言與辭庫內容著作權歸開發小組所有。
+                        本站法條原文引自全國法規資料庫。白話解釋、引言、題目之著作權歸開發小組所有。</br>
+						本站所有內容可供正常查詢、分享及教學使用，然禁止進行販售等金錢相關交易行為。
                     </p>
                     <div class="bg-red-50 p-6 rounded-3xl border-2 border-red-100 text-red-900 font-black">
                         ⚠️ 內容僅供華語學習參考。具體法律疑慮請諮詢律師。
@@ -412,9 +418,9 @@
     <div class="sidebar-footer">
         <div class="btn-footer btn-glossary" onclick="switchView('glossary')">📚 完整詞彙庫 (Glossary)</div>
         <div class="btn-footer btn-log" onclick="openLogModal()">📜 更新日誌 (Log)</div>
-        <div class="btn-footer btn-info" onclick="openInfoModal()">ℹ️ 網站資訊與版權</div>
+        <div class="btn-footer btn-info" onclick="openInfoModal()">ℹ️ 網站資訊與版權聲明</div>
         <div class="contact-info text-center font-black">
-            📍 錯誤回報：contact@legalchinese.edu.tw
+            📍 錯誤回報：emilyrain1126@gmail.com
         </div>
     </div>
 </div>
@@ -422,7 +428,7 @@
 <!-- 學習主畫面 -->
 <div id="view-study" class="main-content">
     <div class="sticky-header" id="main-header">
-        <h1 class="text-3xl font-black text-slate-800 tracking-tight">📖 互動學習單元</h1>
+        <h1 class="text-3xl font-black text-slate-800 tracking-tight">📖 法條學習</h1>
         <div class="flex items-center gap-4">
             <div class="btn-quiz-mini" onclick="openQuizModal()"><span>📝</span> 挑戰測驗</div>
             <div id="level-badge" onclick="openLevelModal()" class="badge-b1-b2 shadow-lg">
@@ -437,7 +443,7 @@
             <p id="law-original" class="content-text text-slate-600 font-bold"></p>
         </div>
         <div class="card white-box">
-            <h3 class="sub-title italic text-emerald-700">💡 教學譯版 (Plain Language)</h3>
+            <h3 class="sub-title italic text-emerald-700">💡 法條說明 (Explanation)</h3>
             <p id="law-simplified" class="content-text font-black text-slate-900"></p>
         </div>
     </div>
@@ -452,8 +458,8 @@
 <div id="view-glossary" class="main-content hidden">
     <div class="sticky-header border-b-2 pb-6 mb-8">
         <div>
-            <h1 class="text-4xl font-black text-slate-800 tracking-tight">📚 完整詞彙庫 (Glossary)</h1>
-            <p class="text-slate-500 font-bold mt-1 text-lg">收錄專業術語，以最白話的方式解釋。</p>
+            <h1 class="text-4xl font-black text-slate-800 tracking-tight">📖 詞彙庫 (Glossary)</h1>
+            <p class="text-slate-500 font-bold mt-1 text-lg">專業術語解釋</p>
         </div>
         <button class="btn-quiz-mini bg-blue-600 border-none px-10 py-4" onclick="switchView('study')">⬅ 返回學習</button>
     </div>
