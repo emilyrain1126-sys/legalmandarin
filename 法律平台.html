@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法律華語學習助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: "Source Sans Pro", "Noto Sans TC", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-y: auto; 
+            min-height: 100vh;
+        }
+
+        /* 側邊欄設計 */
+        .sidebar {
+            background-color: #f1f5f9;
+            border-right: 1px solid #e2e8f0;
+            width: 22%; 
+            min-width: 280px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 1.5rem 1.25rem;
+            z-index: 100;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* 主區域佈局 */
+        .main-content { 
+            margin-left: clamp(280px, 22%, 340px); 
+            padding: 0 2.5rem 3rem 2.5rem; 
+            max-width: 1400px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* 置頂 Header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background-color: #f8fafc;
+            padding: 1.25rem 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sticky-header.scrolled {
+            border-bottom: 2px solid #e2e8f0;
+            background-color: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 767px) {
+            .sidebar { width: 100%; position: sticky; top: 0; height: auto; border-bottom: 2px solid #e2e8f0; }
+            .main-content { margin-left: 0; padding: 1rem; }
+            .sticky-header { position: relative; top: 0; }
+        }
+        
+        .sub-title { 
+            font-size: 1.4rem; 
+            font-weight: 900; 
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .intro-quote {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            padding: 1.25rem 1.5rem;
+            border-radius: 1rem;
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            border-left: 8px solid #3b82f6;
+            line-height: 1.4;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+
+        .content-text { 
+            font-size: 1.15rem; 
+            font-weight: 800; 
+            line-height: 1.8; 
+            white-space: pre-wrap; 
+        }
+
+        /* 搜尋樣式 */
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-weight: 800;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .search-input:focus { border-color: #3b82f6; }
+        
+        .search-results {
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-top: none;
+            border-radius: 0 0 0.75rem 0.75rem;
+            display: none;
+            z-index: 110;
+        }
+        .search-item {
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 800;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .search-item:hover { background-color: #eff6ff; }
+
+        /* 卡片設計 */
+        .card { 
+            background: white; border-radius: 1rem; border: 1px solid #e2e8f0; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 280px; 
+        }
+        .law-box { border-top: 8px solid #3b82f6; }
+        .white-box { border-top: 8px solid #10b981; }
+
+        .section-teaching { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 1.5rem; 
+        }
+
+        /* 懲罰標籤 */
+        .penalty-card-box { 
+            border-top: 10px solid #f59e0b; 
+            background: linear-gradient(to bottom, #fff, #fffbf0);
+            padding: 1.5rem 2rem !important;
+            min-height: auto;
+        }
+        .penalty-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .penalty-tag { 
+            border-radius: 1.25rem; 
+            padding: 1.25rem 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            min-width: 280px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+        }
+        .tag-money { background-color: #fefce8; color: #854d0e; border-color: #fde047; }
+        .tag-jail { background-color: #fef2f2; color: #991b1b; border-color: #fecaca; }
+        .tag-license { background-color: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
+
+        /* 按鈕與功能 */
+        .btn-quiz-mini { 
+            background-color: #ef4444; color: white; padding: 0.6rem 1.5rem; 
+            border-radius: 9999px; font-weight: 900; font-size: 1.1rem;
+            cursor: pointer; display: flex; align-items: center; gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        .btn-quiz-mini:hover { transform: scale(1.05); background-color: #dc2626; }
+
+        #level-badge { 
+            cursor: pointer; font-weight: 900; 
+            padding: 0.6rem 1.5rem; border-radius: 9999px; font-size: 1.1rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s;
+        }
+        .badge-a1-a2 { background-color: #10b981 !important; color: white !important; }
+        .badge-b1-b2 { background-color: #3b82f6 !important; color: white !important; }
+        .badge-c1-c2 { background-color: #8b5cf6 !important; color: white !important; }
+
+        .glossary-word {
+            color: #2563eb; text-decoration: underline; text-underline-offset: 4px;
+            text-decoration-style: dashed; cursor: pointer; font-weight: 900;
+        }
+
+        /* 側邊欄底部 */
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 2px solid #e2e8f0;
+        }
+        .btn-footer {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 0.85rem;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-log { background-color: #475569; color: white; }
+        .btn-glossary { background-color: #3b82f6; color: white; }
+        .btn-info { background-color: #0f172a; color: white; }
+
+        .contact-info {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #64748b;
+            line-height: 1.6;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            margin-top: 0.5rem;
+        }
+
+        /* 詞彙庫獨立頁面 */
+        .glossary-row {
+            display: grid;
+            grid-template-columns: 220px 150px 1fr;
+            gap: 1.5rem;
+            background: white;
+            padding: 1.75rem 2.25rem;
+            border-radius: 1.25rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1.25rem;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        .glossary-row:hover { border-color: #3b82f6; transform: translateX(5px); box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1); }
+        .glossary-term-col { display: flex; flex-direction: column; }
+        .glossary-def-col { font-weight: 800; color: #475569; line-height: 1.7; font-size: 1.1rem; }
+
+        input[type="radio"] { display: none; }
+        .option-label {
+            cursor: pointer; padding: 1.25rem 2.25rem; border: 3px solid #e2e8f0; 
+            border-radius: 1.25rem; transition: all 0.2s; display: block; 
+            font-size: 1.25rem; font-weight: 900; margin-bottom: 0.85rem;
+        }
+        .option-label.selected-correct { background-color: #dcfce7; border-color: #10b981; color: #166534; }
+        .option-label.selected-wrong { background-color: #fee2e2; border-color: #ef4444; color: #991b1b; }
+    </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas" style="position:fixed; top:0; left:0; pointer-events:none; z-index:2000;"></canvas>
+
+<!-- 詞彙單個解釋彈窗 -->
+<div id="term-modal-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeTermModal()">
+    <div class="bg-white p-10 rounded-[2.5rem] max-w-md w-[90%] shadow-2xl" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-start mb-6">
+            <div>
+                <h3 id="modal-term" class="text-3xl font-black text-blue-900">詞彙解釋</h3>
+                <p id="modal-pinyin" class="text-sm text-slate-400 font-black tracking-widest uppercase mt-1">Pinyin</p>
+                <div id="modal-en" class="text-[11px] font-black text-blue-700 italic mt-4 bg-blue-50 px-4 py-2 rounded-full w-fit border border-blue-100">English Context</div>
+            </div>
+            <button onclick="closeTermModal()" class="text-slate-300 hover:text-slate-600 text-4xl font-black">✕</button>
+        </div>
+        <div class="bg-slate-50 p-8 rounded-3xl border-2 border-slate-100 shadow-inner">
+            <p id="modal-def" class="text-slate-700 text-lg font-black leading-relaxed"></p>
+        </div>
+    </div>
+</div>
+
+<!-- 測驗彈窗 -->
+<div id="quiz-modal-overlay" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeQuizModal()">
+    <div class="bg-white p-12 rounded-[3rem] max-w-3xl w-[95%] shadow-2xl border-t-[14px] border-red-500" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-10">
+            <h3 class="text-3xl font-black text-slate-800 flex items-center gap-4"><span>📝</span> 觀念檢驗實戰 (Quiz)</h3>
+            <button onclick="closeQuizModal()" class="text-slate-300 hover:text-slate-600 text-4xl font-black">✕</button>
+        </div>
+        <div class="bg-slate-50 p-10 rounded-[2.5rem] mb-4 border-2 border-slate-100 shadow-inner overflow-y-auto max-h-[60vh]">
+            <p id="quiz-question" class="text-2xl font-black text-slate-700 mb-10 leading-tight"></p>
+            <div id="options-container" class="grid grid-cols-1 gap-4"></div>
+            <div id="feedback-box" class="mt-8 p-8 rounded-3xl hidden font-black text-xl text-center shadow-xl"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 更新日誌彈窗 -->
+<div id="log-modal-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeLogModal()">
+    <div class="bg-white p-12 rounded-[3rem] max-w-2xl w-[90%] shadow-2xl border-t-[12px] border-slate-600" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-3xl font-black text-slate-800 flex items-center gap-4"><span>📜</span> 系統更新日誌 (Log)</h3>
+            <button onclick="closeLogModal()" class="text-slate-300 hover:text-slate-600 text-4xl font-black">✕</button>
+        </div>
+        <div class="bg-slate-50 p-10 rounded-[2.5rem] border shadow-inner max-h-[55vh] overflow-y-auto">
+            <div class="space-y-10 text-sm font-bold text-slate-700">
+                <div class="border-l-4 border-blue-500 pl-6">
+                    <p class="text-blue-600 font-black text-lg mb-2">2026/01/06 (V3.0 - Latest)</p>
+                    <ul class="list-disc space-y-2 text-base">
+                        <li>新增「獨立詞彙庫頁面」，並提供即時查詢功能。</li>
+                        <li>強化「處罰標籤」視覺：Emoji 與標題放大，補足中英翻譯。</li>
+                        <li>程式碼深度整理：將過長的陣列與對象內容手動換行排版。</li>
+                        <li>補齊完整 20 條核心法規內容。</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-emerald-500 pl-6">
+                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/05 (V2.0)</p>
+                    <ul class="list-disc space-y-2 text-base">
+                        <li>擴充「國小生等級」辭庫（40+ 詞彙）。</li>
+                        <li>新增情境引言（生活化提問）於法條最上方。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 網站資訊與版權彈窗 (排版統一) -->
+<div id="info-modal-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeInfoModal()">
+    <div class="bg-white p-12 rounded-[3rem] max-w-2xl w-[90%] shadow-2xl border-t-[12px] border-blue-900" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-2xl font-black text-blue-900 flex items-center gap-4"><span>ℹ️</span> 網站資訊與版權</h3>
+            <button onclick="closeInfoModal()" class="text-slate-300 hover:text-slate-600 text-4xl font-black">✕</button>
+        </div>
+        <div class="bg-slate-50 p-10 rounded-[2.5rem] border shadow-inner max-h-[55vh] overflow-y-auto">
+            <div class="space-y-10 text-base font-bold text-slate-700">
+                <section>
+                    <h4 class="text-xl font-black text-slate-800 mb-4 border-l-6 border-blue-500 pl-4 uppercase tracking-tighter">📜 網站歷史 (History)</h4>
+                    <p class="leading-relaxed">
+                        本站創立於 2026 年，旨在協助外籍人士透過「TBCL 分級華語」理解艱澀法律。
+                        我們將專業術語轉譯為國小生可讀的白話文字，推動法律平權。
+                    </p>
+                </section>
+                <section>
+                    <h4 class="text-xl font-black text-slate-800 mb-4 border-l-6 border-blue-500 pl-4 uppercase tracking-tighter">⚖️ 版權聲明</h4>
+                    <p class="leading-relaxed mb-4">
+                        本站法條原文引自全國法規資料庫。白話解釋、引言與辭庫內容著作權歸開發小組所有。
+                    </p>
+                    <div class="bg-red-50 p-6 rounded-3xl border-2 border-red-100 text-red-900 font-black">
+                        ⚠️ 內容僅供華語學習參考。具體法律疑慮請諮詢律師。
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 等級選擇彈窗 -->
+<div id="level-modal-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeLevelModal()">
+    <div class="bg-white p-12 rounded-[3rem] max-w-sm w-[90%] shadow-2xl text-center" onclick="event.stopPropagation()">
+        <h3 class="text-2xl font-black text-slate-800 mb-8 tracking-tight">更換學習程度 (Level)</h3>
+        <div class="space-y-4">
+            <div class="p-5 border-4 border-emerald-500 bg-emerald-50 rounded-2xl cursor-pointer flex items-center gap-4 transition-transform hover:scale-105" onclick="changeLevel('A1-A2')">
+                <div class="w-5 h-5 rounded-full bg-emerald-500"></div>
+                <span class="font-black text-emerald-800 text-lg">A1-A2 基礎級</span>
+            </div>
+            <div class="p-5 border-4 border-blue-500 bg-blue-50 rounded-2xl cursor-pointer flex items-center gap-4 transition-transform hover:scale-105" onclick="changeLevel('B1-B2')">
+                <div class="w-5 h-5 rounded-full bg-blue-500"></div>
+                <span class="font-black text-blue-800 text-lg">B1-B2 中級</span>
+            </div>
+            <div class="p-5 border-4 border-purple-500 bg-purple-50 rounded-2xl cursor-pointer flex items-center gap-4 transition-transform hover:scale-105" onclick="changeLevel('C1-C2')">
+                <div class="w-5 h-5 rounded-full bg-purple-500"></div>
+                <span class="font-black text-purple-800 text-lg">C1-C2 高級</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 側邊欄 -->
+<div class="sidebar shadow-2xl">
+    <h2 class="text-2xl font-black text-slate-800 mb-6 tracking-tighter border-b-4 border-blue-100 pb-4 uppercase">📚 法律學習導航</h2>
+    
+    <div class="space-y-8 flex-1">
+        <div>
+            <label class="text-[14px] font-black text-slate-500 block mb-3 uppercase tracking-wider">🔍 單元搜尋 (Search Law)</label>
+            <input type="text" id="article-search" class="search-input" placeholder="搜尋生活情境..." oninput="handleSearch()">
+            <div id="search-results-list" class="search-results shadow-lg"></div>
+        </div>
+
+        <div>
+            <label class="text-[14px] font-black text-slate-500 block mb-3 uppercase tracking-wider">1. 法典選擇 (Choose Law)</label>
+            <select id="law-category-selector" class="w-full p-4 border-2 border-slate-300 rounded-2xl text-sm font-black bg-white outline-none focus:border-blue-500 shadow-sm" onchange="onCategoryChange()"></select>
+        </div>
+        <div>
+            <label class="text-[14px] font-black text-slate-500 block mb-3 uppercase tracking-wider">2. 條文選擇 (Select Article)</label>
+            <select id="article-selector" class="w-full p-4 border-2 border-slate-300 rounded-2xl text-sm font-black bg-white outline-none focus:border-blue-500 shadow-sm" onchange="updateContent()"></select>
+        </div>
+    </div>
+
+    <div class="sidebar-footer">
+        <div class="btn-footer btn-glossary" onclick="switchView('glossary')">📚 完整詞彙庫 (Glossary)</div>
+        <div class="btn-footer btn-log" onclick="openLogModal()">📜 更新日誌 (Log)</div>
+        <div class="btn-footer btn-info" onclick="openInfoModal()">ℹ️ 網站資訊與版權</div>
+        <div class="contact-info text-center font-black">
+            📍 錯誤回報：contact@legalchinese.edu.tw
+        </div>
+    </div>
+</div>
+
+<!-- 學習主畫面 -->
+<div id="view-study" class="main-content">
+    <div class="sticky-header" id="main-header">
+        <h1 class="text-3xl font-black text-slate-800 tracking-tight">📖 互動學習單元</h1>
+        <div class="flex items-center gap-4">
+            <div class="btn-quiz-mini" onclick="openQuizModal()"><span>📝</span> 挑戰測驗</div>
+            <div id="level-badge" onclick="openLevelModal()" class="badge-b1-b2 shadow-lg">
+                <span id="badge-text">等級：B1-B2</span><span>▼</span>
+            </div>
+        </div>
+    </div>
+    <div id="intro-box" class="intro-quote">💡 生活提問載入中...</div>
+    <div class="section-teaching">
+        <div class="card law-box">
+            <h3 class="sub-title italic text-blue-700">📜 法律條文原文 (Original)</h3>
+            <p id="law-original" class="content-text text-slate-600 font-bold"></p>
+        </div>
+        <div class="card white-box">
+            <h3 class="sub-title italic text-emerald-700">💡 教學譯版 (Plain Language)</h3>
+            <p id="law-simplified" class="content-text font-black text-slate-900"></p>
+        </div>
+    </div>
+    <div class="section-penalty">
+        <div class="card penalty-card-box">
+            <div id="penalty-grid" class="penalty-container"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 詞彙庫獨立頁面 -->
+<div id="view-glossary" class="main-content hidden">
+    <div class="sticky-header border-b-2 pb-6 mb-8">
+        <div>
+            <h1 class="text-4xl font-black text-slate-800 tracking-tight">📚 完整詞彙庫 (Glossary)</h1>
+            <p class="text-slate-500 font-bold mt-1 text-lg">收錄專業術語，以最白話的方式解釋。</p>
+        </div>
+        <button class="btn-quiz-mini bg-blue-600 border-none px-10 py-4" onclick="switchView('study')">⬅ 返回學習</button>
+    </div>
+    <div class="mb-10">
+        <label class="text-[16px] font-black text-slate-500 block mb-3 uppercase tracking-wider">🔍 搜尋辭庫 (Search Terms)</label>
+        <input type="text" id="glossary-search" class="search-input py-6 text-2xl border-4" placeholder="輸入關鍵字..." oninput="handleGlossarySearch()">
+    </div>
+    <div id="glossary-table-content" class="pb-20"></div>
+</div>
+
+<script>
+    let currentLevel = "B1-B2";
+
+    // 辭庫排版：一屬性一分行
+    const globalGlossary = {
+        "罰鍰": { 
+            pinyin: "fá huán", 
+            en: "Fine", 
+            def: "沒遵守政府規定（像亂丟垃圾）要繳給國家的錢。" 
+        },
+        "罰金": { 
+            pinyin: "fá jīn", 
+            en: "Criminal Fine", 
+            def: "犯了嚴重的罪，法官要求繳的錢，會留下前科紀錄。" 
+        },
+        "動產": { 
+            pinyin: "dòng chǎn", 
+            en: "Movable Property", 
+            def: "法律上指「可以搬得動」的東西，像手機、錢、車子。" 
+        },
+        "有期徒刑": { 
+            pinyin: "yǒu qī tú xíng", 
+            en: "Imprisonment", 
+            def: "必須待在監獄裡生活一段時間，不能隨便出來。" 
+        },
+        "拘役": { 
+            pinyin: "jū yì", 
+            en: "Detention", 
+            def: "被關在監獄裡很短的時間（1到59天），通常是輕罪處罰。" 
+        },
+        "契約": { 
+            pinyin: "qì yuē", 
+            en: "Contract", 
+            def: "兩個人或公司商量好要做的事。例如：工作約定。" 
+        },
+        "申報": { 
+            pinyin: "shēn bào", 
+            en: "Declaration", 
+            def: "向政府部門報告資訊。例如：搬家要告訴移民署。" 
+        },
+        "雇主": { 
+            pinyin: "gù zhǔ", 
+            en: "Employer", 
+            def: "聘請員工工作並發薪水的老闆。" 
+        },
+        "過失": { 
+            pinyin: "guò shī", 
+            en: "Negligence", 
+            def: "不是故意的，但因為大意或不小心而做錯事。" 
+        },
+        "故意": { 
+            pinyin: "gù yì", 
+            en: "Intentional", 
+            def: "心裡明知道不對，卻還是想去做那件事。" 
+        },
+        "議定": { 
+            pinyin: "yì dìng", 
+            en: "Agreed", 
+            def: "兩邊的人商量，最後共同決定的結果。" 
+        },
+        "屆滿": { 
+            pinyin: "jiè mǎn", 
+            en: "Expired", 
+            def: "原本規定好的時間已經結束了。" 
+        },
+        "歧視": { 
+            pinyin: "qí shì", 
+            en: "Discrimination", 
+            def: "因為長相、國籍給對方不公平對待。" 
+        },
+        "意思表示": { 
+            pinyin: "yì sī biǎo shì", 
+            en: "Will", 
+            def: "把心裡想的事說出來或寫出來讓別人知道。" 
+        },
+        "給付": { 
+            pinyin: "jǐ fù", 
+            en: "Payment", 
+            def: "照約定把錢或工作的力氣交給對方。" 
+        },
+        "侵權": { 
+            pinyin: "qīn quán", 
+            en: "Infringement", 
+            def: "亂用別人的權利，或讓別人的身體、財產受傷。" 
+        },
+        "告訴乃論": { 
+            pinyin: "gào sù nǎi lùn", 
+            en: "Complaint", 
+            def: "除非受害人「主動去告」，不然警察不會主動理。" 
+        },
+        "遺失物": { 
+            pinyin: "yí shī wù", 
+            en: "Lost Property", 
+            def: "別人在路上弄丟的東西。" 
+        },
+        "公然": { 
+            pinyin: "gōng rán", 
+            en: "Publicly", 
+            def: "在很多人都看得到、聽得到的地方做某事。" 
+        },
+        "侮辱": { 
+            pinyin: "wǔ rǔ", 
+            en: "Insult", 
+            def: "說難聽話罵人讓對方丟臉。" 
+        },
+        "吊扣": { 
+            pinyin: "diào kòu", 
+            en: "Suspension", 
+            def: "政府暫時收走你的證照，這段時間不能用。" 
+        },
+        "基本工資": { 
+            pinyin: "jī běn gōng zī", 
+            en: "Minimum Wage", 
+            def: "法律規定老闆最少一定要發的薪水數目。" 
+        },
+        "例假": { 
+            pinyin: "lì jià", 
+            en: "Regular Holiday", 
+            def: "法律規定一週一定要休息的日子。" 
+        },
+        "被害人": { 
+            pinyin: "bèi hài rén", 
+            en: "Victim", 
+            def: "受傷或損失東西的那個人。" 
+        },
+        "主管機關": { 
+            pinyin: "zhǔ guǎn jī guān", 
+            en: "Authorities", 
+            def: "負責管這件事的政府部門（如勞動部）。" 
+        }
+    };
+
+    // 20 條完整法規：分行排版
+    const studyData = [
+        { 
+            category: "勞動基準法", 
+            id: "lsa_21", 
+            name: "第 21 條 (最低工資)", 
+            intro: "我的老闆薪水發得合法嗎？", 
+            original: "工資由勞僱雙方議定之。但不得低於基本工資。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "薪水不可以比規定的少。", question: "可以發比較少錢嗎？", options: ["不可以。", "可以。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "薪資不得低於基本工資。", question: "限制？", options: ["不得低於基準。", "隨意。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "工資強行法規。", question: "性質？", options: ["強行規定。", "自由合意。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "勞動基準法", 
+            id: "lsa_24", 
+            name: "第 24 條 (加班費)", 
+            intro: "加班以後，我可以領到多少錢？", 
+            original: "雇主使勞工延長工作時間者，應依標準加給工資。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "加班老闆要多給錢。", question: "加班應？", options: ["給錢。", "請喝水。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "應依法定加成倍率發放。", question: "標準？", options: ["加成計給。", "時薪相同。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "填補勞務耗損補償。", question: "性質？", options: ["損耗填補。", "恩惠。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "勞動基準法", 
+            id: "lsa_30", 
+            name: "第 30 條 (工時上限)", 
+            intro: "我一天最多能工作幾個小時？", 
+            original: "正常工時每日不超過 8 小時，每週不超過 40 小時。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "一天最多工作 8 小時。", question: "可上 12 小時嗎？", options: ["不可。", "可以。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "每日 8 小時為限。", question: "每週上限？", options: ["40 小時。", "48 小時。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "保護性強行規定。", question: "法律性質？", options: ["強行法。", "任意法。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "勞動基準法", 
+            id: "lsa_36", 
+            name: "第 36 條 (例假休息)", 
+            intro: "工作多久以後可以休息？", 
+            original: "勞工每七日中應有二日休息。", 
+            levels: { 
+                "A1-A2": { simplified: "一週一定要休 2 天。", question: "可做十天嗎？", options: ["不可。", "可以。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "排定一例一休。", question: "例假加班？", options: ["天災才行。", "隨時。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "強制性休息權利。", question: "性質？", options: ["生存權保障。", "行政裁量。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "勞動基準法", 
+            id: "lsa_38", 
+            name: "第 38 條 (特休假)", 
+            intro: "我工作滿半年有特休嗎？", 
+            original: "工作滿一定期間，應給特別休假。", 
+            levels: { 
+                "A1-A2": { simplified: "半年有特休假。", question: "半年有幾天？", options: ["3 天。", "無。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "依年資給有薪假。", question: "誰排？", options: ["勞工。", "老闆。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "排定權屬勞工。", question: "未休結算？", options: ["發工資。", "視放棄。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "就業服務法", 
+            id: "esa_5", 
+            name: "第 5 條 (平等就業)", 
+            intro: "老闆可以因為我的國籍就不請我嗎？", 
+            original: "不得以國籍、宗教、性別予以歧視。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "30萬 ~ 150萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "老闆不能對你不公平。", question: "歧視？", options: ["不對。", "對。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "禁止差別待遇。", question: "範圍？", options: ["國籍性別。", "學歷。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "構成不法歧視。", question: "最高罰？", options: ["150萬。", "1萬。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "就業服務法", 
+            id: "esa_43", 
+            name: "第 43 條 (工作許可)", 
+            intro: "沒許可證我可以偷偷打工嗎？", 
+            original: "外國人未經許可，不得從事工作。", 
+            penalties: [{ type: "license", label: "處分", value: "限令出國" }, { type: "money", label: "罰鍰", value: "3萬 ~ 15萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "沒證件工作就是違法。", question: "可偷做嗎？", options: ["不可。", "可以。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "須取得許可方得工作。", question: "非法後果？", options: ["罰鍰遣返。", "補辦。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "採強行許可制。", question: "機制？", options: ["事前許可。", "報備。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "就業服務法", 
+            id: "esa_73", 
+            name: "第 73 條 (許可廢止)", 
+            intro: "我的工作證在什麼情況會失效？", 
+            original: "外國人違法嚴重，應廢止其許可。", 
+            levels: { 
+                "A1-A2": { simplified: "犯錯會取消工作證。", question: "可上班？", options: ["不行。", "可以。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "違規主管機關撤銷許可。", question: "之後？", options: ["離境。", "換工作。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "維護市場秩序。", question: "單位？", options: ["勞動部。", "內政部。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "入出國及移民法", 
+            id: "imm_28", 
+            name: "第 28 條 (地址登記)", 
+            intro: "搬家後要跟政府說新地址嗎？", 
+            original: "外國人變更住址應 15 日內登記。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 1萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "搬家要改地址。", question: "報備？", options: ["要。", "不用。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "15 日內申報。", question: "期限？", options: ["15天。", "30天。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "居住地申報義務。", question: "性質？", options: ["行政罰。", "判刑。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "入出國及移民法", 
+            id: "imm_31", 
+            name: "第 31 條 (居留延期)", 
+            intro: "我可以在台灣待多久？", 
+            original: "居留屆滿前，應申請延期。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 5萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "過期前辦延期。", question: "罰錢？", options: ["會。", "不會。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "應於屆滿前申請。", question: "受理？", options: ["移民署。", "警察。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "行政協力義務。", question: "性質？", options: ["行政違規。", "刑事。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "入出國及移民法", 
+            id: "imm_36", 
+            name: "第 36 條 (強制離境)", 
+            intro: "嚴重違法會被趕回國嗎？", 
+            original: "違反規定情節嚴重，得強制驅逐。", 
+            penalties: [{ type: "license", label: "處分", value: "強制離境" }], 
+            levels: { 
+                "A1-A2": { simplified: "犯大錯送回國。", question: "可回台？", options: ["不行。", "可以。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "強制驅逐處分。", question: "強度？", options: ["具強制力。", "參考。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "須符合正當程序。", question: "救濟？", options: ["可訴願。", "不能。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "入出國及移民法", 
+            id: "imm_85", 
+            name: "第 85 條 (逾期罰則)", 
+            intro: "逾期了會被罰錢嗎？", 
+            original: "逾期停留者，處罰鍰。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 1萬" }], 
+            levels: { 
+                "A1-A2": { simplified: "過期繳錢。", question: "要繳？", options: ["要。", "不要。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "視天數裁罰。", question: "特徵？", options: ["天數累計。", "固定。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "影響簽證。", question: "單位？", options: ["移民署。", "法院。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "民事法律", 
+            id: "civ_153", 
+            name: "第 153 條 (合約成立)", 
+            intro: "點頭就算合約成立嗎？", 
+            original: "當事人意思一致，契約即成立。", 
+            levels: { 
+                "A1-A2": { simplified: "兩邊同意就算成立。", question: "口頭算？", options: ["算。", "不算。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "共識即生效力。", question: "要件？", options: ["意思一致。", "須公證。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "意思一致為核心。", question: "性質？", options: ["不要式。", "要式。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "民事法律", 
+            id: "civ_184", 
+            name: "第 184 條 (賠償責任)", 
+            intro: "弄壞東西一定要賠嗎？", 
+            original: "故意過失侵害權利，負賠償責任。", 
+            penalties: [{ type: "money", label: "賠償", value: "實際損失" }], 
+            levels: { 
+                "A1-A2": { simplified: "弄壞東西要賠錢。", question: "要賠？", options: ["要。", "不用。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "負填補損失之責。", question: "歸責？", options: ["故意過失。", "動機。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "一般侵權責任。", question: "範圍？", options: ["損失利得。", "僅現金。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "民事法律", 
+            id: "civ_421", 
+            name: "第 421 條 (租賃契約)", 
+            intro: "租房子要注意什麼？", 
+            original: "物租與他方，支付租金之契約。", 
+            levels: { 
+                "A1-A2": { simplified: "租房子要給租金。", question: "要錢？", options: ["要。", "不要。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "交付物，給報酬。", question: "義務？", options: ["付租金。", "改房。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "雙務有償。", question: "性質？", options: ["雙務。", "單務。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "刑事法律", 
+            id: "crm_277", 
+            name: "第 277 條 (傷害罪)", 
+            intro: "打架受傷後果多嚴重？", 
+            original: "傷害身體者，處五年以下徒刑。", 
+            penalties: [{ type: "jail", label: "徒刑", value: "5 年以下" }], 
+            levels: { 
+                "A1-A2": { simplified: "打人去關。", question: "犯罪？", options: ["會。", "不會。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "侵害健康可告。", question: "範圍？", options: ["身體健康。", "流血。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "告訴乃論。", question: "性質？", options: ["告才理。", "警察理。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "刑事法律", 
+            id: "crm_309", 
+            name: "第 309 條 (公然侮辱)", 
+            intro: "網路上罵人會犯法嗎？", 
+            original: "公然侮辱人者，處拘役或罰金。", 
+            penalties: [{ type: "money", label: "罰金", value: "9,000 以下" }], 
+            levels: { 
+                "A1-A2": { simplified: "公開罵人犯法。", question: "罵人算？", options: ["算。", "不算。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "公然狀態侮辱他人。", question: "要件？", options: ["公然性。", "私下。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "符合客觀要件。", question: "私訊罵？", options: ["不具公然。", "算。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "刑事法律", 
+            id: "crm_320", 
+            name: "第 320 條 (竊盜罪)", 
+            intro: "沒同意拿東西算偷嗎？", 
+            original: "意圖不法所有取動產，為竊盜。", 
+            penalties: [{ type: "jail", label: "徒刑", value: "5 年以下" }], 
+            levels: { 
+                "A1-A2": { simplified: "不問就拿是偷。", question: "拿錢包？", options: ["竊盜。", "借用。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "意圖佔有他產。", question: "要件？", options: ["取走。", "缺錢。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "侵害支配權。", question: "未遂？", options: ["罰。", "不罰。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "刑事法律", 
+            id: "crm_337", 
+            name: "第 337 條 (拾金不昧)", 
+            intro: "撿錢不還警察犯法嗎？", 
+            original: "侵占遺失物，處罰金。", 
+            penalties: [{ type: "money", label: "罰金", value: "1.5 萬以下" }], 
+            levels: { 
+                "A1-A2": { simplified: "撿錢不還罰錢。", question: "撿一千口袋？", options: ["犯法。", "沒事。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "意圖佔有構成。", question: "做法？", options: ["送警。", "留著。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "處罰金。", question: "處罰？", options: ["罰金。", "拘役。"], answer: 0, feedback: "正確！" } 
+            } 
+        },
+        { 
+            category: "交通法律", 
+            id: "tra_35", 
+            name: "第 35 條 (酒駕重罰)", 
+            intro: "喝酒以後開車罰多少？", 
+            original: "酒測超標處三萬至十二萬罰鍰。", 
+            penalties: [{ type: "money", label: "罰鍰", value: "3萬 ~ 12萬" }, { type: "license", label: "吊扣", value: "1 ~ 2 年" }], 
+            levels: { 
+                "A1-A2": { simplified: "喝酒不開車罰很多。", question: "酒駕到？", options: ["罰扣照。", "沒事。"], answer: 0, feedback: "正確！" }, 
+                "B1-B2": { simplified: "罰鍰與吊扣。", question: "內容？", options: ["金錢資格。", "警告。"], answer: 0, feedback: "正確！" }, 
+                "C1-C2": { simplified: "危險行政罰。", question: "性質？", options: ["行政管制。", "刑事。"], answer: 0, feedback: "正確！" } 
+            } 
+        }
+    ];
+
+    function initSelectors() {
+        const catSelector = document.getElementById('law-category-selector');
+        if(!catSelector) return;
+        const laws = [...new Set(studyData.map(item => item.category))];
+        catSelector.innerHTML = laws.map(law => `<option value="${law}">${law}</option>`).join('');
+        onCategoryChange();
+    }
+
+    function onCategoryChange() {
+        const lawName = document.getElementById('law-category-selector').value;
+        const artSelector = document.getElementById('article-selector');
+        const filtered = studyData.filter(item => item.category === lawName);
+        artSelector.innerHTML = filtered.map(art => `<option value="${art.id}">${art.name}</option>`).join('');
+        updateContent();
+    }
+
+    function handleSearch() {
+        const query = document.getElementById('article-search').value.trim().toLowerCase();
+        const resultList = document.getElementById('search-results-list');
+        if (!query) { resultList.style.display = 'none'; return; }
+        const matches = studyData.filter(item => item.intro.toLowerCase().includes(query) || item.name.toLowerCase().includes(query));
+        if (matches.length > 0) {
+            resultList.innerHTML = matches.map(item => `<div class="search-item" onclick="selectFromSearch('${item.category}', '${item.id}')">💡 ${item.intro}</div>`).join('');
+            resultList.style.display = 'block';
+        } else {
+            resultList.innerHTML = '<div class="search-item text-slate-400">找不到相符法規</div>';
+            resultList.style.display = 'block';
+        }
+    }
+
+    function handleGlossarySearch() {
+        const query = document.getElementById('glossary-search').value.trim().toLowerCase();
+        renderGlossaryTable(query);
+    }
+
+    function selectFromSearch(category, id) {
+        const catEl = document.getElementById('law-category-selector');
+        const artEl = document.getElementById('article-selector');
+        if(catEl && artEl) {
+            catEl.value = category;
+            onCategoryChange();
+            artEl.value = id;
+            updateContent();
+        }
+        document.getElementById('article-search').value = "";
+        document.getElementById('search-results-list').style.display = 'none';
+        switchView('study');
+    }
+
+    function updateContent() {
+        const artId = document.getElementById('article-selector').value;
+        const item = studyData.find(d => d.id === artId);
+        if(!item) return;
+        const content = item.levels[currentLevel];
+        
+        const bSpan = document.getElementById('badge-text');
+        const lBadge = document.getElementById('level-badge');
+        if (bSpan) bSpan.innerText = `等級：${currentLevel}`;
+        if (lBadge) lBadge.className = `badge-${currentLevel.toLowerCase()} shadow-lg`;
+
+        document.getElementById('intro-box').innerText = `💡 ${item.intro}`;
+        document.getElementById('law-original').innerHTML = highlightTerms(item.original);
+        document.getElementById('law-simplified').innerHTML = highlightTerms(content.simplified);
+        
+        const grid = document.getElementById('penalty-grid');
+        grid.innerHTML = (item.penalties || []).map(p => {
+            let colorClass = 'tag-license'; let icon = '🛡️'; let enLabel = '(Action)';
+            if(p.type === 'money') { 
+                colorClass = 'tag-money'; icon = '💰'; 
+                enLabel = p.label.includes('罰金') ? '(Criminal Fine)' : '(Fine)';
+            } else if(p.type === 'jail') { 
+                colorClass = 'tag-jail'; icon = '⛓️'; enLabel = '(Imprisonment)'; 
+            } else if(p.type === 'license') { 
+                icon = (p.label.includes('離境') || p.label.includes('出國')) ? '✈️' : '🪪'; 
+                enLabel = (p.label.includes('離境')) ? '(Deport)' : '(Suspension)';
+            }
+            return `<div class="penalty-tag ${colorClass}"><span class="text-[14px] font-black opacity-80 mb-2 uppercase tracking-wide">${icon} ${p.label} <span class="text-[10px] font-bold opacity-60">${enLabel}</span></span><span class="text-2xl font-black tracking-tighter">${p.value}</span></div>`;
+        }).join('') || '<p class="text-slate-400 font-black italic">本單元無特定罰則</p>';
+        
+        document.getElementById('quiz-question').innerText = content.question;
+        const container = document.getElementById('options-container');
+        container.innerHTML = content.options.map((opt, idx) => `<div class="option-label" id="opt-label-${idx}" onclick="selectAnswer(${idx})">${opt}</div>`).join('');
+        document.getElementById('feedback-box').style.display = 'none';
+    }
+
+    function selectAnswer(index) {
+        const artId = document.getElementById('article-selector').value;
+        const item = studyData.find(d => d.id === artId);
+        const content = item.levels[currentLevel];
+        const fb = document.getElementById('feedback-box');
+        document.querySelectorAll('.option-label').forEach(el => el.classList.remove('selected-correct', 'selected-wrong'));
+        const selectedLabel = document.getElementById(`opt-label-${index}`);
+        fb.style.display = 'block';
+        if (index === content.answer) {
+            if(selectedLabel) selectedLabel.classList.add('selected-correct');
+            fb.className = 'mt-8 p-8 rounded-3xl font-black text-xl text-center shadow-lg bg-emerald-100 text-emerald-800 border-2 border-emerald-500';
+            fb.innerText = `✅ 正確！${content.feedback}`;
+            startConfetti();
+        } else {
+            if(selectedLabel) selectedLabel.classList.add('selected-wrong');
+            fb.className = 'mt-8 p-8 rounded-3xl font-black text-xl text-center shadow-lg bg-red-100 text-red-800 border-2 border-red-500';
+            fb.innerText = `❌ 答錯了！請點擊文中藍色詞彙尋找線索。`;
+        }
+    }
+
+    function switchView(viewName) {
+        document.getElementById('view-study').classList.add('hidden');
+        document.getElementById('view-glossary').classList.add('hidden');
+        if (viewName === 'study') document.getElementById('view-study').classList.remove('hidden');
+        else if (viewName === 'glossary') {
+            document.getElementById('view-glossary').classList.remove('hidden');
+            renderGlossaryTable();
+        }
+        window.scrollTo(0, 0);
+    }
+
+    function renderGlossaryTable(filterText = "") {
+        const container = document.getElementById('glossary-table-content');
+        const keys = Object.keys(globalGlossary).sort().filter(key => {
+            const d = globalGlossary[key];
+            return key.includes(filterText) || d.pinyin.toLowerCase().includes(filterText.toLowerCase()) || d.en.toLowerCase().includes(filterText.toLowerCase());
+        });
+        if (keys.length === 0) {
+            container.innerHTML = '<p class="text-center text-slate-400 font-bold py-10">找不到相符詞彙</p>';
+            return;
+        }
+        container.innerHTML = keys.map(key => {
+            const d = globalGlossary[key];
+            return `<div class="glossary-row shadow-sm"><div class="glossary-term-col"><span class="text-2xl font-black text-blue-900">${key}</span><span class="text-xs text-slate-400 font-bold mt-1 tracking-widest uppercase">${d.pinyin}</span></div><div class="flex items-center"><span class="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 italic">${d.en}</span></div><div class="glossary-def-col">${d.def}</div></div>`;
+        }).join('');
+    }
+
+    function highlightTerms(text) {
+        if (!text) return "";
+        const keys = Object.keys(globalGlossary).sort((a, b) => b.length - a.length);
+        const pattern = new RegExp(keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+        return text.replace(pattern, m => `<span class="glossary-word" onclick="openTermModal('${m}')">${m}</span>`);
+    }
+
+    function openTermModal(key) {
+        const d = globalGlossary[key];
+        document.getElementById('modal-term').innerText = key;
+        document.getElementById('modal-pinyin').innerText = d.pinyin;
+        document.getElementById('modal-en').innerText = d.en; 
+        document.getElementById('modal-def').innerText = d.def;
+        document.getElementById('term-modal-overlay').classList.remove('hidden');
+    }
+
+    function closeTermModal() { document.getElementById('term-modal-overlay').classList.add('hidden'); }
+    function openQuizModal() { document.getElementById('quiz-modal-overlay').classList.remove('hidden'); }
+    function closeQuizModal() { document.getElementById('quiz-modal-overlay').classList.add('hidden'); }
+    function openLevelModal() { document.getElementById('level-modal-overlay').classList.remove('hidden'); }
+    function closeLevelModal() { document.getElementById('level-modal-overlay').classList.add('hidden'); }
+    function openLogModal() { document.getElementById('log-modal-overlay').classList.remove('hidden'); }
+    function closeLogModal() { document.getElementById('log-modal-overlay').classList.add('hidden'); }
+    function openInfoModal() { document.getElementById('info-modal-overlay').classList.remove('hidden'); }
+    function closeInfoModal() { document.getElementById('info-modal-overlay').classList.add('hidden'); }
+    function changeLevel(l) { currentLevel = l; updateContent(); closeLevelModal(); }
+
+    function startConfetti() {
+        const canvas = document.getElementById('confetti-canvas');
+        if(!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let p = [];
+        for (let i = 0; i < 40; i++) p.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height - canvas.height, r: Math.random() * 4 + 2, d: Math.random() * 10, c: `hsl(${Math.random() * 360}, 100%, 50%)`, t: Math.random() * 10 - 10 });
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            p.forEach((p) => {
+                ctx.beginPath(); ctx.lineWidth = p.r; ctx.strokeStyle = p.c;
+                ctx.moveTo(p.x + p.t + p.r / 2, p.y); ctx.lineTo(p.x + p.t, p.y + p.t + p.r / 2); ctx.stroke();
+                p.y += 3; if (p.y > canvas.height) p.y = -20;
+            });
+        }
+        let anim = setInterval(draw, 20);
+        setTimeout(() => { clearInterval(anim); ctx.clearRect(0, 0, canvas.width, canvas.height); }, 2500);
+    }
+    
+    window.onscroll = function() {
+        const header = document.getElementById('main-header');
+        if (header && window.pageYOffset > 10) header.classList.add('scrolled');
+        else if (header) header.classList.remove('scrolled');
+    };
+
+    window.onload = () => { initSelectors(); };
+</script>
+
+</body>
+</html>
