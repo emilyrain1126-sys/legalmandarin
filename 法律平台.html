@@ -198,14 +198,24 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             transition: all 0.2s;
         }
-        .badge-a1-a2 { background-color: #10b981 !important; color: white !important; }
         .badge-b1-b2 { background-color: #3b82f6 !important; color: white !important; }
         .badge-c1-c2 { background-color: #8b5cf6 !important; color: white !important; }
 
         .glossary-word {
-            color: #2563eb; text-decoration: underline; text-underline-offset: 4px;
-            text-decoration-style: dashed; cursor: pointer; font-weight: 900;
-        }
+			text-decoration: underline; 
+			text-underline-offset: 4px;
+			text-decoration-style: dashed; 
+			cursor: pointer; 
+			font-weight: 900;
+			transition: opacity 0.2s;
+		}
+		.glossary-word:hover { opacity: 0.7; }
+
+		/* 定義四種交替顏色 */
+		.word-color-0 { color: #2563eb; } /* 藍 */
+		.word-color-1 { color: #7c3aed; } /* 紫 */
+		.word-color-2 { color: #0891b2; } /* 青 */
+		.word-color-3 { color: #db2777; } /* 粉 */
 
         /* 側邊欄底部 */
         .sidebar-footer {
@@ -317,25 +327,26 @@
         <div class="bg-slate-50 p-10 rounded-[2.5rem] border shadow-inner max-h-[55vh] overflow-y-auto">
             <div class="space-y-10 text-sm font-bold text-slate-700">
                 <div class="border-l-4 border-blue-500 pl-6">
-                    <p class="text-blue-600 font-black text-lg mb-2">2026/01/06 (V3.0 - Latest)</p>
+                    <p class="text-blue-600 font-black text-lg mb-2">2026/01/07 (V0.d - Latest)</p>
                     <ul class="list-disc space-y-2 text-base">
-                        <li>新增「獨立詞彙庫頁面」，並提供即時查詢功能。</li>
-                        <li>強化「處罰標籤」視覺：Emoji 與標題放大，補足中英翻譯。</li>
-                        <li>程式碼深度整理：將過長的陣列與對象內容手動換行排版。</li>
-                        <li>補齊完整 20 條核心法規內容。</li>
+                        <li>1. 更改了法條原文及解釋內字典功能的呈現方式，具體變更如下：</li>
+						<li>(1) 詞彙將依順序規律變換顏色，以利辨識</li>
+						<li>(2) 僅在詞彙首次出現時添加字典功能</li>
+						<li>2. 新增「功能」等8個詞彙解釋</li>
                     </ul>
                 </div>
                 <div class="border-l-4 border-emerald-500 pl-6">
-                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/05 (V2.0)</p>
+                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/06 (V0.b)</p>
                     <ul class="list-disc space-y-2 text-base">
-                        <li>擴充「國小生等級」辭庫（40+ 詞彙）。</li>
-                        <li>新增情境引言（生活化提問）於法條最上方。</li>
+                        <li>1. 新增「居留證」等6個詞彙解釋</li>
+                        <li>2. 新增「入出國及移民法 #22」等共1條說明</li>
                     </ul>
                 </div>
-				<div class="border-l-4 border-emerald-500 pl-6">
-                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/06 (V0.a)</p>
+				<div class="border-l-4 border-amber-500 pl-6">
+                    <p class="text-amber-600 font-black text-lg mb-2">2026/01/06 (V0.a)</p>
                     <ul class="list-disc space-y-2 text-base">
-                        <li>更新網站介面描述</li>
+                        <li>1. 新增查詢功能</li>
+                        <li>2. 更改答題反饋並新增說明</li>
                     </ul>
                 </div>
             </div>
@@ -343,7 +354,7 @@
     </div>
 </div>
 
-<!-- 網站資訊與版權彈窗 (排版統一) -->
+<!-- 網站資訊與版權彈窗-->
 <div id="info-modal-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-[1100]" onclick="closeInfoModal()">
     <div class="bg-white p-12 rounded-[3rem] max-w-2xl w-[90%] shadow-2xl border-t-[12px] border-blue-900" onclick="event.stopPropagation()">
         <div class="flex justify-between items-center mb-8">
@@ -355,7 +366,8 @@
                 <section>
                     <h4 class="text-xl font-black text-slate-800 mb-4 border-l-6 border-blue-500 pl-4 uppercase tracking-tighter">📜 網站資訊</h4>
                     <p class="leading-relaxed">
-                        本站創立於 2026 年，旨在透過將專業術語依指定等級進行翻譯，協助外籍人士透過理解我國法律。
+                        本站創立於 2026 年，旨在透過將專業術語依指定等級進行翻譯，協助外籍人士透過理解我國法律。</br>
+						本站僅二人共同開發，更新頻率約為每月3次不定時更新，且僅更新與外籍人士相關之法條說明。如有針對特定法條的製作需求，請來信告知。
                     </p>
                 </section>
                 <section>
@@ -378,10 +390,6 @@
     <div class="bg-white p-12 rounded-[3rem] max-w-sm w-[90%] shadow-2xl text-center" onclick="event.stopPropagation()">
         <h3 class="text-2xl font-black text-slate-800 mb-8 tracking-tight">更換學習程度 (Level)</h3>
         <div class="space-y-4">
-            <div class="p-5 border-4 border-emerald-500 bg-emerald-50 rounded-2xl cursor-pointer flex items-center gap-4 transition-transform hover:scale-105" onclick="changeLevel('A1-A2')">
-                <div class="w-5 h-5 rounded-full bg-emerald-500"></div>
-                <span class="font-black text-emerald-800 text-lg">A1-A2 基礎級</span>
-            </div>
             <div class="p-5 border-4 border-blue-500 bg-blue-50 rounded-2xl cursor-pointer flex items-center gap-4 transition-transform hover:scale-105" onclick="changeLevel('B1-B2')">
                 <div class="w-5 h-5 rounded-full bg-blue-500"></div>
                 <span class="font-black text-blue-800 text-lg">B1-B2 中級</span>
@@ -420,7 +428,7 @@
         <div class="btn-footer btn-log" onclick="openLogModal()">📜 更新日誌 (Log)</div>
         <div class="btn-footer btn-info" onclick="openInfoModal()">ℹ️ 網站資訊與版權聲明</div>
         <div class="contact-info text-center font-black">
-            📍 錯誤回報：emilyrain1126@gmail.com
+            📍 錯誤回報：guowenjiaocai@gmail.com
         </div>
     </div>
 </div>
@@ -430,7 +438,7 @@
     <div class="sticky-header" id="main-header">
         <h1 class="text-3xl font-black text-slate-800 tracking-tight">📖 法條學習</h1>
         <div class="flex items-center gap-4">
-            <div class="btn-quiz-mini" onclick="openQuizModal()"><span>📝</span> 挑戰測驗</div>
+            <div class="btn-quiz-mini" onclick="openQuizModal()"><span>📝</span> challenge</div>
             <div id="level-badge" onclick="openLevelModal()" class="badge-b1-b2 shadow-lg">
                 <span id="badge-text">等級：B1-B2</span><span>▼</span>
             </div>
@@ -475,40 +483,50 @@
 
     // 辭庫排版：一屬性一分行
     const globalGlossary = {
-        "罰鍰": { 
-            pinyin: "fá huán", 
-            en: "Fine", 
-            def: "沒遵守政府規定（像亂丟垃圾）要繳給國家的錢。" 
+        "申請": { 
+            pinyin: "shēnqǐng", 
+            en: "apply", 
+            def: "向政府或機構正式提出要求。" 
         },
-        "罰金": { 
-            pinyin: "fá jīn", 
-            en: "Criminal Fine", 
-            def: "犯了嚴重的罪，法官要求繳的錢，會留下前科紀錄。" 
+        "居留證": { 
+            pinyin: "jūliú zhèng", 
+            en: "residence permit", 
+            def: "讓外國人可以在台灣合法住一段時間的證件。" 
         },
-        "動產": { 
-            pinyin: "dòng chǎn", 
-            en: "Movable Property", 
-            def: "法律上指「可以搬得動」的東西，像手機、錢、車子。" 
+        "外僑": { 
+            pinyin: "wàiqiáo", 
+            en: "foreign national", 
+            def: "住在台灣的外國人。" 
         },
-        "有期徒刑": { 
-            pinyin: "yǒu qī tú xíng", 
-            en: "Imprisonment", 
-            def: "必須待在監獄裡生活一段時間，不能隨便出來。" 
+        "簽證": { 
+            pinyin: "qiānzhèng", 
+            en: "visa", 
+            def: "進入一個國家前需要的許可文件。" 
         },
-        "拘役": { 
-            pinyin: "jū yì", 
-            en: "Detention", 
-            def: "被關在監獄裡很短的時間（1到59天），通常是輕罪處罰。" 
+        "入境": { 
+            pinyin: "rùjìng", 
+            en: "entry into a country", 
+            def: "進入一個國家。" 
         },
-        "契約": { 
-            pinyin: "qì yuē", 
-            en: "Contract", 
-            def: "兩個人或公司商量好要做的事。例如：工作約定。" 
+        "合法": { 
+            pinyin: "héfǎ", 
+            en: "legal", 
+            def: "事情符合規定，是可以做的。" 
         },
-        "申報": { 
-            pinyin: "shēn bào", 
-            en: "Declaration", 
-            def: "向政府部門報告資訊。例如：搬家要告訴移民署。" 
+        "資格": { 
+            pinyin: "zīgé", 
+            en: "qualification / eligibility", 
+            def: "一個人有沒有權利做某件事。" 
+        },
+        "移民署": { 
+            pinyin: "yímín shǔ", 
+            en: "National Immigration Agency", 
+            def: "政府管理外國人入境、居留的單位。" 
+        },
+        "證件": { 
+            pinyin: "zhèngjiàn", 
+            en: "official document / ID", 
+            def: "可以證明身分或資格的文件。" 
         },
         "雇主": { 
             pinyin: "gù zhǔ", 
@@ -605,6 +623,29 @@
     // 20 條完整法規：分行排版
     const studyData = [
         { 
+            category: "入出國及移民法", 
+            id: "imm_22", 
+            name: "第 22 條 (入境後居留證)", 
+            intro: "如果我想長時間留在台灣，需要辦什麼證件？", 
+            original: "1.外國人持有效簽證或適用以免簽證方式入國之有效護照或旅行證件，經移民署查驗許可入國後，取得停留、居留許可。\n\n2. 依前項規定取得居留許可者，應於入國後之翌日起算三十日內，向移民署申請外僑居留證。但申請取得工作許可、居留簽證、外僑居留證及重入國許可四證合一之有效證件，或其他已含有外僑居留證功能之證件者，得免申請外僑居留證。\n\n3. 外僑居留證之有效期間，自許可之翌日起算，最長不得逾三年。", 
+            levels: { 
+                "B1-B2": { 
+                    simplified: "如果你有簽證，或是可以用免簽證的方式來台灣，在移民署同意後，你就可以合法地入境台灣，也可以在台灣停留或居留。\n\n如果你已經有居留資格，你需要在入境後三十天內，到移民署申請外僑居留證。\n\n如果你想要申請的證件也有居留證的功能，你不需要另外申請外僑居留證。\n\n外僑居留證最多可以用三年。", 
+                    question: "入境後多久內要辦居留證？", 
+                    options: ["30天內。", "90天內。"], 
+                    answer: 0, 
+                    feedback: "法律規定的時間是30天以內。" 
+                },
+                "C1-C2": { 
+                    simplified: "外國人取得居留資格後，原則上應於三十日內申請居留證。\n\n預計申請四證合一等有效證件者，得免於另外進行申請外僑居留證的申請。\n\n居留證有效期限為三年。", 
+                    question: "甲是一名外國人，持有效居留簽證入境台灣，並經移民署查驗許可後取得居留資格。入境後第二十日，甲尚未向移民署申請外僑居留證，但甲已成功取得一張「四證合一」之有效證件，且該證件包含外僑居留證之功能。\n\n依本條規定，下列何者正確？", 
+                    options: ["甲未於入境後三十日內申請外僑居留證，已違反規定", "甲因已持有包含外僑居留證功能之有效證件，得免再申請外僑居留證"], 
+                    answer: 1, 
+                    feedback: "本條規定，取得居留資格者，原則上須於入境翌日起三十日內申請外僑居留證；然而，若當事人已取得包含外僑居留證功能之有效證件，即屬例外情形，得免重複申請。因此，即使尚未另行申請外僑居留證，亦不構成違反規定。" 
+                } 
+            } 
+        },
+        { 
             category: "勞動基準法", 
             id: "lsa_21", 
             name: "第 21 條 (最低工資)", 
@@ -612,7 +653,6 @@
             original: "工資由勞僱雙方議定之。但不得低於基本工資。", 
             penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
             levels: { 
-                "A1-A2": { simplified: "薪水不可以比規定的少。", question: "可以發比較少錢嗎？", options: ["不可以。", "可以。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "薪資不得低於基本工資。", question: "限制？", options: ["不得低於基準。", "隨意。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "工資強行法規。", question: "性質？", options: ["強行規定。", "自由合意。"], answer: 0, feedback: "正確！" } 
             } 
@@ -625,7 +665,6 @@
             original: "雇主使勞工延長工作時間者，應依標準加給工資。", 
             penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
             levels: { 
-                "A1-A2": { simplified: "加班老闆要多給錢。", question: "加班應？", options: ["給錢。", "請喝水。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "應依法定加成倍率發放。", question: "標準？", options: ["加成計給。", "時薪相同。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "填補勞務耗損補償。", question: "性質？", options: ["損耗填補。", "恩惠。"], answer: 0, feedback: "正確！" } 
             } 
@@ -638,7 +677,6 @@
             original: "正常工時每日不超過 8 小時，每週不超過 40 小時。", 
             penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
             levels: { 
-                "A1-A2": { simplified: "一天最多工作 8 小時。", question: "可上 12 小時嗎？", options: ["不可。", "可以。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "每日 8 小時為限。", question: "每週上限？", options: ["40 小時。", "48 小時。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "保護性強行規定。", question: "法律性質？", options: ["強行法。", "任意法。"], answer: 0, feedback: "正確！" } 
             } 
@@ -650,7 +688,6 @@
             intro: "工作多久以後可以休息？", 
             original: "勞工每七日中應有二日休息。", 
             levels: { 
-                "A1-A2": { simplified: "一週一定要休 2 天。", question: "可做十天嗎？", options: ["不可。", "可以。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "排定一例一休。", question: "例假加班？", options: ["天災才行。", "隨時。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "強制性休息權利。", question: "性質？", options: ["生存權保障。", "行政裁量。"], answer: 0, feedback: "正確！" } 
             } 
@@ -662,7 +699,6 @@
             intro: "我工作滿半年有特休嗎？", 
             original: "工作滿一定期間，應給特別休假。", 
             levels: { 
-                "A1-A2": { simplified: "半年有特休假。", question: "半年有幾天？", options: ["3 天。", "無。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "依年資給有薪假。", question: "誰排？", options: ["勞工。", "老闆。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "排定權屬勞工。", question: "未休結算？", options: ["發工資。", "視放棄。"], answer: 0, feedback: "正確！" } 
             } 
@@ -675,7 +711,6 @@
             original: "不得以國籍、宗教、性別予以歧視。", 
             penalties: [{ type: "money", label: "罰鍰", value: "30萬 ~ 150萬" }], 
             levels: { 
-                "A1-A2": { simplified: "老闆不能對你不公平。", question: "歧視？", options: ["不對。", "對。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "禁止差別待遇。", question: "範圍？", options: ["國籍性別。", "學歷。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "構成不法歧視。", question: "最高罰？", options: ["150萬。", "1萬。"], answer: 0, feedback: "正確！" } 
             } 
@@ -688,7 +723,6 @@
             original: "外國人未經許可，不得從事工作。", 
             penalties: [{ type: "license", label: "處分", value: "限令出國" }, { type: "money", label: "罰鍰", value: "3萬 ~ 15萬" }], 
             levels: { 
-                "A1-A2": { simplified: "沒證件工作就是違法。", question: "可偷做嗎？", options: ["不可。", "可以。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "須取得許可方得工作。", question: "非法後果？", options: ["罰鍰遣返。", "補辦。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "採強行許可制。", question: "機制？", options: ["事前許可。", "報備。"], answer: 0, feedback: "正確！" } 
             } 
@@ -700,7 +734,6 @@
             intro: "我的工作證在什麼情況會失效？", 
             original: "外國人違法嚴重，應廢止其許可。", 
             levels: { 
-                "A1-A2": { simplified: "犯錯會取消工作證。", question: "可上班？", options: ["不行。", "可以。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "違規主管機關撤銷許可。", question: "之後？", options: ["離境。", "換工作。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "維護市場秩序。", question: "單位？", options: ["勞動部。", "內政部。"], answer: 0, feedback: "正確！" } 
             } 
@@ -713,7 +746,6 @@
             original: "外國人變更住址應 15 日內登記。", 
             penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 1萬" }], 
             levels: { 
-                "A1-A2": { simplified: "搬家要改地址。", question: "報備？", options: ["要。", "不用。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "15 日內申報。", question: "期限？", options: ["15天。", "30天。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "居住地申報義務。", question: "性質？", options: ["行政罰。", "判刑。"], answer: 0, feedback: "正確！" } 
             } 
@@ -726,7 +758,6 @@
             original: "居留屆滿前，應申請延期。", 
             penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 5萬" }], 
             levels: { 
-                "A1-A2": { simplified: "過期前辦延期。", question: "罰錢？", options: ["會。", "不會。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "應於屆滿前申請。", question: "受理？", options: ["移民署。", "警察。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "行政協力義務。", question: "性質？", options: ["行政違規。", "刑事。"], answer: 0, feedback: "正確！" } 
             } 
@@ -739,7 +770,6 @@
             original: "違反規定情節嚴重，得強制驅逐。", 
             penalties: [{ type: "license", label: "處分", value: "強制離境" }], 
             levels: { 
-                "A1-A2": { simplified: "犯大錯送回國。", question: "可回台？", options: ["不行。", "可以。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "強制驅逐處分。", question: "強度？", options: ["具強制力。", "參考。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "須符合正當程序。", question: "救濟？", options: ["可訴願。", "不能。"], answer: 0, feedback: "正確！" } 
             } 
@@ -752,7 +782,6 @@
             original: "逾期停留者，處罰鍰。", 
             penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 1萬" }], 
             levels: { 
-                "A1-A2": { simplified: "過期繳錢。", question: "要繳？", options: ["要。", "不要。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "視天數裁罰。", question: "特徵？", options: ["天數累計。", "固定。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "影響簽證。", question: "單位？", options: ["移民署。", "法院。"], answer: 0, feedback: "正確！" } 
             } 
@@ -764,7 +793,6 @@
             intro: "點頭就算合約成立嗎？", 
             original: "當事人意思一致，契約即成立。", 
             levels: { 
-                "A1-A2": { simplified: "兩邊同意就算成立。", question: "口頭算？", options: ["算。", "不算。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "共識即生效力。", question: "要件？", options: ["意思一致。", "須公證。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "意思一致為核心。", question: "性質？", options: ["不要式。", "要式。"], answer: 0, feedback: "正確！" } 
             } 
@@ -777,7 +805,6 @@
             original: "故意過失侵害權利，負賠償責任。", 
             penalties: [{ type: "money", label: "賠償", value: "實際損失" }], 
             levels: { 
-                "A1-A2": { simplified: "弄壞東西要賠錢。", question: "要賠？", options: ["要。", "不用。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "負填補損失之責。", question: "歸責？", options: ["故意過失。", "動機。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "一般侵權責任。", question: "範圍？", options: ["損失利得。", "僅現金。"], answer: 0, feedback: "正確！" } 
             } 
@@ -789,7 +816,6 @@
             intro: "租房子要注意什麼？", 
             original: "物租與他方，支付租金之契約。", 
             levels: { 
-                "A1-A2": { simplified: "租房子要給租金。", question: "要錢？", options: ["要。", "不要。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "交付物，給報酬。", question: "義務？", options: ["付租金。", "改房。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "雙務有償。", question: "性質？", options: ["雙務。", "單務。"], answer: 0, feedback: "正確！" } 
             } 
@@ -802,7 +828,6 @@
             original: "傷害身體者，處五年以下徒刑。", 
             penalties: [{ type: "jail", label: "徒刑", value: "5 年以下" }], 
             levels: { 
-                "A1-A2": { simplified: "打人去關。", question: "犯罪？", options: ["會。", "不會。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "侵害健康可告。", question: "範圍？", options: ["身體健康。", "流血。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "告訴乃論。", question: "性質？", options: ["告才理。", "警察理。"], answer: 0, feedback: "正確！" } 
             } 
@@ -815,7 +840,6 @@
             original: "公然侮辱人者，處拘役或罰金。", 
             penalties: [{ type: "money", label: "罰金", value: "9,000 以下" }], 
             levels: { 
-                "A1-A2": { simplified: "公開罵人犯法。", question: "罵人算？", options: ["算。", "不算。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "公然狀態侮辱他人。", question: "要件？", options: ["公然性。", "私下。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "符合客觀要件。", question: "私訊罵？", options: ["不具公然。", "算。"], answer: 0, feedback: "正確！" } 
             } 
@@ -828,7 +852,6 @@
             original: "意圖不法所有取動產，為竊盜。", 
             penalties: [{ type: "jail", label: "徒刑", value: "5 年以下" }], 
             levels: { 
-                "A1-A2": { simplified: "不問就拿是偷。", question: "拿錢包？", options: ["竊盜。", "借用。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "意圖佔有他產。", question: "要件？", options: ["取走。", "缺錢。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "侵害支配權。", question: "未遂？", options: ["罰。", "不罰。"], answer: 0, feedback: "正確！" } 
             } 
@@ -841,7 +864,6 @@
             original: "侵占遺失物，處罰金。", 
             penalties: [{ type: "money", label: "罰金", value: "1.5 萬以下" }], 
             levels: { 
-                "A1-A2": { simplified: "撿錢不還罰錢。", question: "撿一千口袋？", options: ["犯法。", "沒事。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "意圖佔有構成。", question: "做法？", options: ["送警。", "留著。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "處罰金。", question: "處罰？", options: ["罰金。", "拘役。"], answer: 0, feedback: "正確！" } 
             } 
@@ -854,7 +876,6 @@
             original: "酒測超標處三萬至十二萬罰鍰。", 
             penalties: [{ type: "money", label: "罰鍰", value: "3萬 ~ 12萬" }, { type: "license", label: "吊扣", value: "1 ~ 2 年" }], 
             levels: { 
-                "A1-A2": { simplified: "喝酒不開車罰很多。", question: "酒駕到？", options: ["罰扣照。", "沒事。"], answer: 0, feedback: "正確！" }, 
                 "B1-B2": { simplified: "罰鍰與吊扣。", question: "內容？", options: ["金錢資格。", "警告。"], answer: 0, feedback: "正確！" }, 
                 "C1-C2": { simplified: "危險行政罰。", question: "性質？", options: ["行政管制。", "刑事。"], answer: 0, feedback: "正確！" } 
             } 
@@ -956,12 +977,12 @@
         fb.style.display = 'block';
         if (index === content.answer) {
             if(selectedLabel) selectedLabel.classList.add('selected-correct');
-            fb.className = 'mt-8 p-8 rounded-3xl font-black text-xl text-center shadow-lg bg-emerald-100 text-emerald-800 border-2 border-emerald-500';
+            fb.className = 'mt-8 p-8 rounded-3xl font-black text-xl text-left shadow-lg bg-emerald-100 text-emerald-800 border-2 border-emerald-500';
             fb.innerText = `✅ 正確！${content.feedback}`;
             startConfetti();
         } else {
             if(selectedLabel) selectedLabel.classList.add('selected-wrong');
-            fb.className = 'mt-8 p-8 rounded-3xl font-black text-xl text-center shadow-lg bg-red-100 text-red-800 border-2 border-red-500';
+            fb.className = 'mt-8 p-8 rounded-3xl font-black text-xl text-left shadow-lg bg-red-100 text-red-800 border-2 border-red-500';
             fb.innerText = `❌ 答錯了！請點擊文中藍色詞彙尋找線索。`;
         }
     }
@@ -997,7 +1018,21 @@
         if (!text) return "";
         const keys = Object.keys(globalGlossary).sort((a, b) => b.length - a.length);
         const pattern = new RegExp(keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
-        return text.replace(pattern, m => `<span class="glossary-word" onclick="openTermModal('${m}')">${m}</span>`);
+        
+        let colorCounter = 0;
+        const colorClasses = ['word-color-0', 'word-color-1', 'word-color-2', 'word-color-3'];
+        const seenInThisBlock = new Set(); // 關鍵：記錄本區塊已出現的詞彙
+
+        return text.replace(pattern, m => {
+            // 如果這個詞已經出現過，就回傳原文字 (不加標籤)
+            if (seenInThisBlock.has(m)) return m;
+            
+            // 第一次出現，記錄下來並上色
+            seenInThisBlock.add(m);
+            const cls = colorClasses[colorCounter % colorClasses.length];
+            colorCounter++;
+            return `<span class="glossary-word ${cls}" onclick="openTermModal('${m}')">${m}</span>`;
+        });
     }
 
     function openTermModal(key) {
@@ -1039,6 +1074,8 @@
         setTimeout(() => { clearInterval(anim); ctx.clearRect(0, 0, canvas.width, canvas.height); }, 2500);
     }
     
+
+	
     window.onscroll = function() {
         const header = document.getElementById('main-header');
         if (header && window.pageYOffset > 10) header.classList.add('scrolled');
