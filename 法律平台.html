@@ -327,26 +327,27 @@
         <div class="bg-slate-50 p-10 rounded-[2.5rem] border shadow-inner max-h-[55vh] overflow-y-auto">
             <div class="space-y-10 text-sm font-bold text-slate-700">
                 <div class="border-l-4 border-blue-500 pl-6">
-                    <p class="text-blue-600 font-black text-lg mb-2">2026/01/07 (V0.d - Latest)</p>
+                    <p class="text-blue-600 font-black text-lg mb-2">2026/01/12 (V0.d - Latest)</p>
+                    <ul class="list-disc space-y-2 text-base">
+						<li>新增「核准」等52個詞彙解釋</li>
+						<li>新增「入出國及移民法#23」等1條法條相關內容</li>						
+                    </ul>
+                </div>
+                <div class="border-l-4 border-emerald-500 pl-6">
+                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/08 (V0.C)</p>
+                    <ul class="list-disc space-y-2 text-base">
+                        <li>刪除了目前版本內尚未建置完成的法條及詞彙庫之佔位符</li>
+						<li>(08:54-V0.C-1)新增「符合」等17個詞彙解釋</li>
+                    </ul>
+                </div>
+				<div class="border-l-4 border-amber-500 pl-6">
+                    <p class="text-amber-600 font-black text-lg mb-2">2026/01/06 (V0.b))</p>
                     <ul class="list-disc space-y-2 text-base">
                         <li>1. 更改了法條原文及解釋內字典功能的呈現方式，具體變更如下：</li>
 						<li>(1) 詞彙將依順序規律變換顏色，以利辨識</li>
 						<li>(2) 僅在詞彙首次出現時添加字典功能</li>
 						<li>2. 新增「功能」等8個詞彙解釋</li>
-                    </ul>
-                </div>
-                <div class="border-l-4 border-emerald-500 pl-6">
-                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/06 (V0.b)</p>
-                    <ul class="list-disc space-y-2 text-base">
-                        <li>1. 新增「居留證」等6個詞彙解釋</li>
-                        <li>2. 新增「入出國及移民法 #22」等共1條說明</li>
-                    </ul>
-                </div>
-				<div class="border-l-4 border-amber-500 pl-6">
-                    <p class="text-amber-600 font-black text-lg mb-2">2026/01/06 (V0.a)</p>
-                    <ul class="list-disc space-y-2 text-base">
-                        <li>1. 新增查詢功能</li>
-                        <li>2. 更改答題反饋並新增說明</li>
+						<li>3. 更改了詞彙庫內詞彙的呈現順序，現在，詞彙庫內的詞彙會依英文首字母進行排序</li>
                     </ul>
                 </div>
             </div>
@@ -528,116 +529,419 @@
             en: "official document / ID", 
             def: "可以證明身分或資格的文件。" 
         },
-        "雇主": { 
-            pinyin: "gù zhǔ", 
-            en: "Employer", 
-            def: "聘請員工工作並發薪水的老闆。" 
+        "功能": { 
+            pinyin: "gōngnéng", 
+            en: "function", 
+            def: "一個東西可以用來做什麼。" 
         },
-        "過失": { 
-            pinyin: "guò shī", 
-            en: "Negligence", 
-            def: "不是故意的，但因為大意或不小心而做錯事。" 
+        "有效": { 
+            pinyin: "yǒuxiào", 
+            en: "valid", 
+            def: "在規定的時間內，可以使用。" 
         },
-        "故意": { 
-            pinyin: "gù yì", 
-            en: "Intentional", 
-            def: "心裡明知道不對，卻還是想去做那件事。" 
+        "停留": { 
+            pinyin: "tíngliú", 
+            en: "stay (short-term)", 
+            def: "在一個地方短時間待著，不是長住。" 
         },
-        "議定": { 
-            pinyin: "yì dìng", 
-            en: "Agreed", 
-            def: "兩邊的人商量，最後共同決定的結果。" 
+        "居留": { 
+            pinyin: "jūliú", 
+            en: "reside / residence", 
+            def: "在一個地方住一段比較長的時間。" 
         },
-        "屆滿": { 
-            pinyin: "jiè mǎn", 
-            en: "Expired", 
-            def: "原本規定好的時間已經結束了。" 
+        "許可": { 
+            pinyin: "xǔkě", 
+            en: "permission / permit", 
+            def: "政府或單位同意你做某件事。" 
         },
-        "歧視": { 
-            pinyin: "qí shì", 
-            en: "Discrimination", 
-            def: "因為長相、國籍給對方不公平對待。" 
+        "翌日": { 
+            pinyin: "yìrì", 
+            en: "the next day", 
+            def: "今天的下一天。" 
         },
-        "意思表示": { 
-            pinyin: "yì sī biǎo shì", 
-            en: "Will", 
-            def: "把心裡想的事說出來或寫出來讓別人知道。" 
+        "逾": { 
+            pinyin: "yú", 
+            en: "exceed / over", 
+            def: "超過規定的時間或數量。" 
         },
-        "給付": { 
-            pinyin: "jǐ fù", 
-            en: "Payment", 
-            def: "照約定把錢或工作的力氣交給對方。" 
+        "免": { 
+            pinyin: "miǎn", 
+            en: "be exempt from / not need to", 
+            def: "不用做某件事。" 
         },
-        "侵權": { 
-            pinyin: "qīn quán", 
-            en: "Infringement", 
-            def: "亂用別人的權利，或讓別人的身體、財產受傷。" 
+		"符合": {
+            pinyin: "fúhé", 
+            en: "meet / comply with", 
+            def: "和要求一樣，沒有問題。" 
         },
-        "告訴乃論": { 
-            pinyin: "gào sù nǎi lùn", 
-            en: "Complaint", 
-            def: "除非受害人「主動去告」，不然警察不會主動理。" 
+        "情況": {
+            pinyin: "qíngkuàng", 
+            en: "situation / condition", 
+            def: "事情發生時的狀態或原因。" 
         },
-        "遺失物": { 
-            pinyin: "yí shī wù", 
-            en: "Lost Property", 
-            def: "別人在路上弄丟的東西。" 
+        "規定": {
+            pinyin: "guīdìng", 
+            en: "regulation / rule", 
+            def: "政府或單位訂下的規則。" 
         },
-        "公然": { 
-            pinyin: "gōng rán", 
-            en: "Publicly", 
-            def: "在很多人都看得到、聽得到的地方做某事。" 
+        "身分": {
+            pinyin: "shēnfèn", 
+            en: "legal status / identity", 
+            def: "一個人在法律上的身份。" 
         },
-        "侮辱": { 
-            pinyin: "wǔ rǔ", 
-            en: "Insult", 
-            def: "說難聽話罵人讓對方丟臉。" 
+        "取得": {
+            pinyin: "qǔdé", 
+            en: "obtain / acquire", 
+            def: "經過申請後得到。" 
         },
-        "吊扣": { 
-            pinyin: "diào kòu", 
-            en: "Suspension", 
-            def: "政府暫時收走你的證照，這段時間不能用。" 
+        "配偶": {
+            pinyin: "pèiǒu", 
+            en: "spouse", 
+            def: "法律上的另一伴。" 
         },
-        "基本工資": { 
-            pinyin: "jī běn gōng zī", 
-            en: "Minimum Wage", 
-            def: "法律規定老闆最少一定要發的薪水數目。" 
+        "子女": {
+            pinyin: "zǐ nǚ", 
+            en: "children", 
+            def: "自己的孩子，包括兒子和女兒。" 
         },
-        "例假": { 
-            pinyin: "lì jià", 
-            en: "Regular Holiday", 
-            def: "法律規定一週一定要休息的日子。" 
+        "條件": {
+            pinyin: "tiáojiàn", 
+            en: "condition / requirement", 
+            def: "一定要先做到的要求。" 
         },
-        "被害人": { 
-            pinyin: "bèi hài rén", 
-            en: "Victim", 
-            def: "受傷或損失東西的那個人。" 
+        "之後": {
+            pinyin: "zhīhòu", 
+            en: "after / afterwards", 
+            def: "某一個時間點以後。" 
         },
-        "主管機關": { 
-            pinyin: "zhǔ guǎn jī guān", 
-            en: "Authorities", 
-            def: "負責管這件事的政府部門（如勞動部）。" 
+        "相同": {
+            pinyin: "xiāngtóng", 
+            en: "same / identical", 
+            def: "兩個東西一樣，沒有差別。" 
+        },
+        "並": {
+            pinyin: "bìng", 
+            en: "and / also", 
+            def: "連接兩件同時發生的事情。" 
+        },
+        "限制": {
+            pinyin: "xiànzhì", 
+            en: "restriction / limit", 
+            def: "有規則，不能自由做。" 
+        },
+        "投資": {
+            pinyin: "tóuzī", 
+            en: "investment", 
+            def: "把錢或資源用來做生意。" 
+        },
+        "相關": {
+            pinyin: "xiāngguān", 
+            en: "related / relevant", 
+            def: "和某件事情有關係。" 
+        },
+        "特定": {
+            pinyin: "tèdìng", 
+            en: "specific / designated", 
+            def: "指定的，不是全部。" 
+        },
+        "經營": {
+            pinyin: "jīngyíng", 
+            en: "operate / run (a business)", 
+            def: "管理和發展一個事業。" 
+        },
+        "延期": {
+            pinyin: "yánqí", 
+            en: "postpone / extend (time)", 
+            def: "時間往後推，不是現在。" 
+        },
+		        "核准": {
+            pinyin: "hézhǔn", 
+            en: "approve", 
+            def: "政府看過後說可以。" 
+        },
+        "使用": {
+            pinyin: "shǐyòng", 
+            en: "use", 
+            def: "拿來用。" 
+        },
+        "項": {
+            pinyin: "xiàng", 
+            en: "item / clause", 
+            def: "條文或內容中的一個部分。" 
+        },
+        "主管": {
+            pinyin: "zhǔguǎn", 
+            en: "in charge", 
+            def: "負責管理的人或單位。" 
+        },
+        "之": {
+            pinyin: "zhī", 
+            en: "of (formal)", 
+            def: "表示「的」，多用在正式文件。" 
+        },
+        "機關": {
+            pinyin: "jīguān", 
+            en: "government agency", 
+            def: "政府的單位。" 
+        },
+        "地區": {
+            pinyin: "dìqū", 
+            en: "area / region", 
+            def: "一個地方或區域。" 
+        },
+        "目前": {
+            pinyin: "mùqián", 
+            en: "currently", 
+            def: "現在這個時間。" 
+        },
+        "根據": {
+            pinyin: "gēnjù", 
+            en: "according to / based on", 
+            def: "依照某個法律或資料。" 
+        },
+        "及": {
+            pinyin: "jí", 
+            en: "and", 
+            def: "連接前後兩個內容，表示「和」。" 
+        },
+        "永久": {
+            pinyin: "yǒngjiǔ", 
+            en: "permanent", 
+            def: "沒有時間限制，一直有效。" 
+        },
+        "款": {
+            pinyin: "kuǎn", 
+            en: "paragraph / sub-clause", 
+            def: "法律條文中的一小段。" 
+        },
+        "戶籍": {
+            pinyin: "hùjí", 
+            en: "household registration", 
+            def: "政府記錄的住家資料。" 
+        },
+        "未滿": {
+            pinyin: "wèimǎn", 
+            en: "under / not yet reached", 
+            def: "還不到某個年齡或時間。" 
+        },
+        "人才": {
+            pinyin: "réncái", 
+            en: "talent / skilled person", 
+            def: "有專業能力的人。" 
+        },
+        "教學": {
+            pinyin: "jiàoxué", 
+            en: "teaching", 
+            def: "教書和上課。" 
+        },
+        "專業": {
+            pinyin: "zhuānyè", 
+            en: "professional / expertise", 
+            def: "特別學過、很熟的能力。" 
+        },
+        "原本": {
+            pinyin: "yuánběn", 
+            en: "originally", 
+            def: "一開始就是這樣。" 
+        },
+        "事業": {
+            pinyin: "shìyè", 
+            en: "career / business", 
+            def: "工作或公司。" 
+        },
+        "與": {
+            pinyin: "yǔ", 
+            en: "and / with", 
+            def: "表示「和」，比較正式。" 
+        },
+        "從事": {
+            pinyin: "cóngshì", 
+            en: "engage in", 
+            def: "做某一種工作或活動。" 
+        },
+        "持續": {
+            pinyin: "chíxù", 
+            en: "continue", 
+            def: "一直做，沒有停。" 
+        },
+        "以免": {
+            pinyin: "yǐmiǎn", 
+            en: "in order to avoid", 
+            def: "為了不要發生不好的事。" 
+        },
+        "勞動": {
+            pinyin: "láodòng", 
+            en: "labor / work", 
+            def: "工作、付出體力或時間。" 
+        },
+        "國民": {
+            pinyin: "guómín", 
+            en: "citizen", 
+            def: "一個國家的人民。" 
+        },
+        "就業": {
+            pinyin: "jiùyè", 
+            en: "employment", 
+            def: "有工作。" 
+        },
+        "期限": {
+            pinyin: "qīxiàn", 
+            en: "time limit / period", 
+            def: "可以使用的時間。" 
+        },
+        "機構": {
+            pinyin: "jīgòu", 
+            en: "institution / organization", 
+            def: "組織或單位。" 
+        },
+        "行政": {
+            pinyin: "xíngzhèng", 
+            en: "administrative", 
+            def: "政府的管理工作。" 
+        },
+        "中央": {
+            pinyin: "zhōngyāng", 
+            en: "central (government)", 
+            def: "國家層級，不是地方。" 
+        },
+        "教育部": {
+            pinyin: "jiàoyù bù", 
+            en: "Ministry of Education", 
+            def: "管理學校和教育的政府單位。" 
+        },
+        "於": {
+            pinyin: "yú", 
+            en: "at / in (formal)", 
+            def: "表示「在」或「於某時間」，很正式。" 
+        },
+        "居住": {
+            pinyin: "jūzhù", 
+            en: "live / reside", 
+            def: "住在某個地方。" 
+        },
+        "註冊": {
+            pinyin: "zhùcè", 
+            en: "register", 
+            def: "把資料登記在系統裡" 
+        },
+        "持": {
+            pinyin: "chí", 
+            en: "hold / possess", 
+            def: "拿著或擁有。" 
+        },
+        "進行": {
+            pinyin: "jìnxíng", 
+            en: "carry out / conduct", 
+            def: "正在做某件事。" 
+        },
+        "就讀": {
+            pinyin: "jiùdú", 
+            en: "be enrolled (in school)", 
+            def: "在學校念書。" 
+        },
+        "允許": {
+            pinyin: "yǔnxǔ", 
+            en: "allow / permit", 
+            def: "同意，可以做。" 
+        },
+        "確認": {
+            pinyin: "quèrèn", 
+            en: "confirm", 
+            def: "再檢查一次，確定是真的。" 
+        },
+        "認定": {
+            pinyin: "rèndìng", 
+            en: "officially determine", 
+            def: "政府正式判定。" 
+        },
+        "任意": {
+            pinyin: "rènyì", 
+            en: "arbitrary / at will", 
+            def: "隨便、沒有規定。" 
+        },
+        "原文": {
+            pinyin: "yuánwén", 
+            en: "original text", 
+            def: "法律或文件原來的文字。" 
+        },
+        "尊": {
+            pinyin: "zūn", 
+            en: "respect (formal)", 
+            def: "表示尊敬，多用在正式用語。" 
+        },
+        "認可": {
+            pinyin: "rènkě", 
+            en: "recognize / approve", 
+            def: "正式同意、承認。" 
+        },
+        "附設": {
+            pinyin: "fùshè", 
+            en: "affiliated / attached", 
+            def: "另外加在一起的。" 
+        },
+        "延攬": {
+            pinyin: "yánlǎn", 
+            en: "recruit (talent)", 
+            def: "請專業的人來工作。" 
+        },
+        "招收": {
+            pinyin: "zhāoshōu", 
+            en: "admit / recruit", 
+            def: "學校或單位收學生或人員。" 
+        },
+        "大專院校": {
+            pinyin: "dàzhuān yuàn xiào", 
+            en: "colleges and universities", 
+            def: "大學和專科學校。" 
+        },
+        "憑證": {
+            pinyin: "píngzhèng", 
+            en: "certificate / credential", 
+            def: "用來證明身分或資格的文件。" 
+        },
+        "親屬": {
+            pinyin: "qīnshǔ", 
+            en: "relative / family member", 
+            def: "家人，如配偶、子女。" 
+        },
+        "備註": {
+            pinyin: "bèizhù", 
+            en: "note / remark", 
+            def: "補充說明的內容。" 
         }
     };
 
-    // 20 條完整法規：分行排版
+    // 法規
     const studyData = [
         { 
             category: "入出國及移民法", 
             id: "imm_22", 
             name: "第 22 條 (入境後居留證)", 
             intro: "如果我想長時間留在台灣，需要辦什麼證件？", 
-            original: "1.外國人持有效簽證或適用以免簽證方式入國之有效護照或旅行證件，經移民署查驗許可入國後，取得停留、居留許可。\n\n2. 依前項規定取得居留許可者，應於入國後之翌日起算三十日內，向移民署申請外僑居留證。但申請取得工作許可、居留簽證、外僑居留證及重入國許可四證合一之有效證件，或其他已含有外僑居留證功能之證件者，得免申請外僑居留證。\n\n3. 外僑居留證之有效期間，自許可之翌日起算，最長不得逾三年。", 
-            levels: { 
+			original: `1. 外國人持有效簽證或適用以免簽證方式入國之有效護照或旅行證件，經移民署查驗許可入國後，取得停留、居留許可。
+			
+2. 依前項規定取得居留許可者，應於入國後之翌日起算三十日內，向移民署申請外僑居留證。但申請取得工作許可、居留簽證、外僑居留證及重入國許可四證合一之有效證件，或其他已含有外僑居留證功能之證件者，得免申請外僑居留證。
+
+3. 外僑居留證之有效期間，自許可之翌日起算，最長不得逾三年。`,             levels: { 
                 "B1-B2": { 
-                    simplified: "如果你有簽證，或是可以用免簽證的方式來台灣，在移民署同意後，你就可以合法地入境台灣，也可以在台灣停留或居留。\n\n如果你已經有居留資格，你需要在入境後三十天內，到移民署申請外僑居留證。\n\n如果你想要申請的證件也有居留證的功能，你不需要另外申請外僑居留證。\n\n外僑居留證最多可以用三年。", 
-                    question: "入境後多久內要辦居留證？", 
+					simplified: `如果你有簽證，或是可以用免簽證的方式來台灣，在移民署同意後，你就可以合法地入境台灣，也可以在台灣停留或居留。
+					
+如果你已經有居留資格，你需要在入境後三十天內，到移民署申請外僑居留證。
+
+如果你想要申請的證件也有居留證的功能，你不需要另外申請外僑居留證。
+
+外僑居留證最多可以用三年。`,                    
+					question: "入境後多久內要辦居留證？", 
                     options: ["30天內。", "90天內。"], 
                     answer: 0, 
                     feedback: "法律規定的時間是30天以內。" 
                 },
                 "C1-C2": { 
-                    simplified: "外國人取得居留資格後，原則上應於三十日內申請居留證。\n\n預計申請四證合一等有效證件者，得免於另外進行申請外僑居留證的申請。\n\n居留證有效期限為三年。", 
+                    simplified: `外國人取得居留資格後，原則上應於三十日內申請居留證。
+
+預計申請四證合一等有效證件者，得免於另外進行申請外僑居留證的申請。
+
+居留證有效期限為三年。`, 
                     question: "甲是一名外國人，持有效居留簽證入境台灣，並經移民署查驗許可後取得居留資格。入境後第二十日，甲尚未向移民署申請外僑居留證，但甲已成功取得一張「四證合一」之有效證件，且該證件包含外僑居留證之功能。\n\n依本條規定，下列何者正確？", 
                     options: ["甲未於入境後三十日內申請外僑居留證，已違反規定", "甲因已持有包含外僑居留證功能之有效證件，得免再申請外僑居留證"], 
                     answer: 1, 
@@ -646,240 +950,86 @@
             } 
         },
         { 
-            category: "勞動基準法", 
-            id: "lsa_21", 
-            name: "第 21 條 (最低工資)", 
-            intro: "我的老闆薪水發得合法嗎？", 
-            original: "工資由勞僱雙方議定之。但不得低於基本工資。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
-            levels: { 
-                "B1-B2": { simplified: "薪資不得低於基本工資。", question: "限制？", options: ["不得低於基準。", "隨意。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "工資強行法規。", question: "性質？", options: ["強行規定。", "自由合意。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "勞動基準法", 
-            id: "lsa_24", 
-            name: "第 24 條 (加班費)", 
-            intro: "加班以後，我可以領到多少錢？", 
-            original: "雇主使勞工延長工作時間者，應依標準加給工資。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
-            levels: { 
-                "B1-B2": { simplified: "應依法定加成倍率發放。", question: "標準？", options: ["加成計給。", "時薪相同。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "填補勞務耗損補償。", question: "性質？", options: ["損耗填補。", "恩惠。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "勞動基準法", 
-            id: "lsa_30", 
-            name: "第 30 條 (工時上限)", 
-            intro: "我一天最多能工作幾個小時？", 
-            original: "正常工時每日不超過 8 小時，每週不超過 40 小時。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "2萬 ~ 100萬" }], 
-            levels: { 
-                "B1-B2": { simplified: "每日 8 小時為限。", question: "每週上限？", options: ["40 小時。", "48 小時。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "保護性強行規定。", question: "法律性質？", options: ["強行法。", "任意法。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "勞動基準法", 
-            id: "lsa_36", 
-            name: "第 36 條 (例假休息)", 
-            intro: "工作多久以後可以休息？", 
-            original: "勞工每七日中應有二日休息。", 
-            levels: { 
-                "B1-B2": { simplified: "排定一例一休。", question: "例假加班？", options: ["天災才行。", "隨時。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "強制性休息權利。", question: "性質？", options: ["生存權保障。", "行政裁量。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "勞動基準法", 
-            id: "lsa_38", 
-            name: "第 38 條 (特休假)", 
-            intro: "我工作滿半年有特休嗎？", 
-            original: "工作滿一定期間，應給特別休假。", 
-            levels: { 
-                "B1-B2": { simplified: "依年資給有薪假。", question: "誰排？", options: ["勞工。", "老闆。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "排定權屬勞工。", question: "未休結算？", options: ["發工資。", "視放棄。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "就業服務法", 
-            id: "esa_5", 
-            name: "第 5 條 (平等就業)", 
-            intro: "老闆可以因為我的國籍就不請我嗎？", 
-            original: "不得以國籍、宗教、性別予以歧視。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "30萬 ~ 150萬" }], 
-            levels: { 
-                "B1-B2": { simplified: "禁止差別待遇。", question: "範圍？", options: ["國籍性別。", "學歷。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "構成不法歧視。", question: "最高罰？", options: ["150萬。", "1萬。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "就業服務法", 
-            id: "esa_43", 
-            name: "第 43 條 (工作許可)", 
-            intro: "沒許可證我可以偷偷打工嗎？", 
-            original: "外國人未經許可，不得從事工作。", 
-            penalties: [{ type: "license", label: "處分", value: "限令出國" }, { type: "money", label: "罰鍰", value: "3萬 ~ 15萬" }], 
-            levels: { 
-                "B1-B2": { simplified: "須取得許可方得工作。", question: "非法後果？", options: ["罰鍰遣返。", "補辦。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "採強行許可制。", question: "機制？", options: ["事前許可。", "報備。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "就業服務法", 
-            id: "esa_73", 
-            name: "第 73 條 (許可廢止)", 
-            intro: "我的工作證在什麼情況會失效？", 
-            original: "外國人違法嚴重，應廢止其許可。", 
-            levels: { 
-                "B1-B2": { simplified: "違規主管機關撤銷許可。", question: "之後？", options: ["離境。", "換工作。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "維護市場秩序。", question: "單位？", options: ["勞動部。", "內政部。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
             category: "入出國及移民法", 
-            id: "imm_28", 
-            name: "第 28 條 (地址登記)", 
-            intro: "搬家後要跟政府說新地址嗎？", 
-            original: "外國人變更住址應 15 日內登記。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 1萬" }], 
+            id: "imm_23", 
+            name: "第 23 條 (申請外僑居留證)", 
+            intro: "如果我想申請外僑居留證，我需要符合哪些資格？", 
+			original: `1. 持停留期限在六十日以上，且未經簽證核發機關加註限制不准延期或其他限制之有效簽證入國之外國人，有下列情形之一者，得向移民署申請居留，經許可者，核發外僑居留證：
+			
+一、配偶為現在在臺灣地區居住且設有戶籍或獲准居留之我國國民，或經核准居留或永久居留之外國人，或經核准居留之香港或澳門居民。但該經核准居留之配偶係依第九款或第十款規定經許可，或經中央勞動主管機關許可在我國從事就業服務法第四十六條第一項第八款至第十款工作者，不得申請。
+
+二、未滿十八歲，其直系尊親屬為現在在臺灣地區設有戶籍或獲准居留之我國國民，或經核准居留或永久居留之外國人，或經核准居留之香港或澳門居民。其親屬關係因收養而發生者，被收養者應與收養者在臺灣地區共同居住。但該經核准居留之直系尊親屬係依第九款或第十款規定經許可，或經中央勞動主管機關許可在我國從事就業服務法第四十六條第一項第八款至第十款工作者，不得申請。
+
+三、為現在在臺灣地區從事投資經營管理且已實行投資、跨國企業內部調動服務、學術科技研究或長期產業科技研究之大陸地區人民之配偶、未滿十八歲子女及年滿十八歲因身心障礙無法自理生活之子女。
+
+四、經中央勞動主管機關或目的事業主管機關許可在我國從事就業服務法第四十六條第一項第一款至第七款、第十一款之工作或從事就業服務法第四十八條第一項第一款、第三款規定免經許可之工作，或從事外國專業人才延攬及僱用法第四條第四款第四目、第五目、第八條、第十條之專業工作，或依該法第十五條第一項取得工作許可。
+
+五、在我國有一定金額以上之投資，經中央目的事業主管機關核准或備查之投資人或外國法人投資人之代表人。
+
+六、外國公司在我國境內之負責人。
+
+七、依前三款規定，經核准居留或永久居留者，其年滿十八歲因身心障礙無法自理生活之子女。
+
+八、經僑務主管機關核轉各級主管教育行政機關分發之自行回國就學僑生。
+
+九、配偶死亡時為居住臺灣地區設有戶籍國民，並對在臺灣地區已設有戶籍未成年子女，有撫育事實、行使負擔權利義務或會面交往。
+
+十、曾為居住臺灣地區設有戶籍國民之配偶，且曾在我國合法居留，對在臺灣地區已設有戶籍未成年子女，有撫育事實、行使負擔權利義務或會面交往。
+
+2. 以&zwnj;免簽證或持停留簽證入國之外國人，其符合前項第四款規定者，得向移民署申請居留，經許可者，核發外僑居留證。
+
+3. 依前項規定經許可居留或持居留簽證入國經許可居留，且符合第一項第四款規定者，其配偶、未滿十八歲子女及年滿十八歲因身心障礙無法自理生活之子女，以免簽證或持停留簽證入國者，得向移民署申請居留，經許可者，核發外僑居留證。
+
+4. 外國人申請居留原因與其原持憑入國之停留簽證目的相符，且有下列情形之一者，得向移民署申請居留，經許可者，核發外僑居留證：
+
+一、經各級主管教育行政機關、大學或其組成之海外聯合招生委員會許可在我國就學之僑生。
+
+二、經各級主管教育行政機關核定得招收外國學生之學校許可在我國就學之學生。
+
+三、在教育部認可大專校院附設之華語教學機構就讀滿四個月，並繼續註冊三個月以上之學生。`, 
             levels: { 
-                "B1-B2": { simplified: "15 日內申報。", question: "期限？", options: ["15天。", "30天。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "居住地申報義務。", question: "性質？", options: ["行政罰。", "判刑。"], answer: 0, feedback: "正確！" } 
+                "B1-B2": { 
+			simplified: `這一條是在說：如果你本來是來台灣停留，什麼情況下可以申請改成居留，並拿到外僑居留證。
+			
+如果你是外國人，拿著停留時間六十日以上的有效簽證入境，而且你的簽證上沒有寫不能延期或其他限制，在符合規定的情況下，就可以向移民署申請居留。
+
+如果你申請居留的目的，是因為結婚或家庭關係、在台灣工作、投資或經營公司，或是來台灣讀書，只要你的身分符合規定，就有機會申請居留。不過，如果你的配偶或家人，是因某些特定工作身分取得居留，就不能用這一條來申請。
+
+另外，如果你是用免簽證或停留簽證入境，只要之後取得在台灣工作的資格，也可以申請居留。已經取得居留身分的人，如果他的配偶或子女是用免簽或停留簽證入境，在符合條件的情況下，也可以一起申請居留。
+
+最後，如果你申請居留的原因，和你一開始來台灣的目的相同，例如你是來台灣念書，而且也符合相關規定，也可以依這一條申請居留。`,                     
+			question: "小明是外國人，持有停留期限六十日以上的有效簽證入境台灣，簽證上也沒有寫不能延期。他來台灣後，取得了在台灣工作的資格，想申請居留。\n\n根據本條規定，下列哪一個說法是正確的？", 
+                    options: ["只要是停留簽證入境，就一定不能申請居留", "只要符合工作等規定，即使原本是停留身分，也可以申請居留"], 
+                    answer: 1, 
+                    feedback: "法律規定，只要持有符合條件的停留簽證，並因工作、家庭或就學等原因符合規定，就可以向移民署申請居留，不是只有一開始拿居留簽證的人才能申請。" 
+                },
+                "C1-C2": { 
+                    simplified:`1. 外國人使用停留期限六十日以上之有效簽證入境，並且簽證沒有被備註不得延期或其他限制時，如果符合以下任意一項資格，就可以跟移民署申請居留。經過核准，核發外僑居留證：
+					
+（一）配偶是目前居住於臺灣地區並設有戶籍的台灣國民，或經過核准居留或永久居留的外國人。
+
+（二）未滿十八歲，且直系尊親屬是目前在臺灣地區設有戶籍的台灣人，或經核准居留或永久居留之外國人。
+
+（三）經過中央勞動主管機關或目的事業主管機關的許可，在台灣從事《就業服務法》認定的工作，或根據《外國專業人才延攬及僱用法》取得工作的人。
+
+（四）其他：從原文進行確認。
+
+2. 使用免簽證或停留簽證入境，而且符合前項第三款（工作許可）規定的外國人，可以向移民署申請居留；經過核准，核發外僑居留證。
+
+3. 根據前項規定得到居留的允許，或使用居留簽證入境並經過核准居留，且符合第一項第三款規定的人，配偶及未滿十八歲的子女，如果以免簽證或持停留簽證入境，可以向移民署申請居留；經過核准，核發外僑居留證。
+
+4. 外國人申請居留的原因，與原本使用憑證入境的停留簽證目的相同，且符合以下任一一種情形的人，可以向移民署申請居留；經過核准，核發外僑居留證：
+
+（一）經過主管教育行政機關核准可以招收外國學生的學校，許可在台灣讀書的外國學生。
+
+（二）在教育部認可的大專院校附設華語文教學機構就讀滿四個月，並持續註冊三個月以上之學生。`,  
+                    question: "外國人以免簽證入境臺灣，並已取得合法工作許可。依本文規定，下列何者正確？", 
+                    options: ["不得以免簽證身分申請居留。", "得向移民署申請居留。"], 
+                    answer: 1, 
+                    feedback: "法律明確規定，符合工作許可條件者，即使以免簽證入境，仍可申請居留，並非一定要先離境或更換簽證。" 
+                } 
             } 
         },
-        { 
-            category: "入出國及移民法", 
-            id: "imm_31", 
-            name: "第 31 條 (居留延期)", 
-            intro: "我可以在台灣待多久？", 
-            original: "居留屆滿前，應申請延期。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 5萬" }], 
-            levels: { 
-                "B1-B2": { simplified: "應於屆滿前申請。", question: "受理？", options: ["移民署。", "警察。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "行政協力義務。", question: "性質？", options: ["行政違規。", "刑事。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "入出國及移民法", 
-            id: "imm_36", 
-            name: "第 36 條 (強制離境)", 
-            intro: "嚴重違法會被趕回國嗎？", 
-            original: "違反規定情節嚴重，得強制驅逐。", 
-            penalties: [{ type: "license", label: "處分", value: "強制離境" }], 
-            levels: { 
-                "B1-B2": { simplified: "強制驅逐處分。", question: "強度？", options: ["具強制力。", "參考。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "須符合正當程序。", question: "救濟？", options: ["可訴願。", "不能。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "入出國及移民法", 
-            id: "imm_85", 
-            name: "第 85 條 (逾期罰則)", 
-            intro: "逾期了會被罰錢嗎？", 
-            original: "逾期停留者，處罰鍰。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "2千 ~ 1萬" }], 
-            levels: { 
-                "B1-B2": { simplified: "視天數裁罰。", question: "特徵？", options: ["天數累計。", "固定。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "影響簽證。", question: "單位？", options: ["移民署。", "法院。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "民事法律", 
-            id: "civ_153", 
-            name: "第 153 條 (合約成立)", 
-            intro: "點頭就算合約成立嗎？", 
-            original: "當事人意思一致，契約即成立。", 
-            levels: { 
-                "B1-B2": { simplified: "共識即生效力。", question: "要件？", options: ["意思一致。", "須公證。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "意思一致為核心。", question: "性質？", options: ["不要式。", "要式。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "民事法律", 
-            id: "civ_184", 
-            name: "第 184 條 (賠償責任)", 
-            intro: "弄壞東西一定要賠嗎？", 
-            original: "故意過失侵害權利，負賠償責任。", 
-            penalties: [{ type: "money", label: "賠償", value: "實際損失" }], 
-            levels: { 
-                "B1-B2": { simplified: "負填補損失之責。", question: "歸責？", options: ["故意過失。", "動機。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "一般侵權責任。", question: "範圍？", options: ["損失利得。", "僅現金。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "民事法律", 
-            id: "civ_421", 
-            name: "第 421 條 (租賃契約)", 
-            intro: "租房子要注意什麼？", 
-            original: "物租與他方，支付租金之契約。", 
-            levels: { 
-                "B1-B2": { simplified: "交付物，給報酬。", question: "義務？", options: ["付租金。", "改房。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "雙務有償。", question: "性質？", options: ["雙務。", "單務。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "刑事法律", 
-            id: "crm_277", 
-            name: "第 277 條 (傷害罪)", 
-            intro: "打架受傷後果多嚴重？", 
-            original: "傷害身體者，處五年以下徒刑。", 
-            penalties: [{ type: "jail", label: "徒刑", value: "5 年以下" }], 
-            levels: { 
-                "B1-B2": { simplified: "侵害健康可告。", question: "範圍？", options: ["身體健康。", "流血。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "告訴乃論。", question: "性質？", options: ["告才理。", "警察理。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "刑事法律", 
-            id: "crm_309", 
-            name: "第 309 條 (公然侮辱)", 
-            intro: "網路上罵人會犯法嗎？", 
-            original: "公然侮辱人者，處拘役或罰金。", 
-            penalties: [{ type: "money", label: "罰金", value: "9,000 以下" }], 
-            levels: { 
-                "B1-B2": { simplified: "公然狀態侮辱他人。", question: "要件？", options: ["公然性。", "私下。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "符合客觀要件。", question: "私訊罵？", options: ["不具公然。", "算。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "刑事法律", 
-            id: "crm_320", 
-            name: "第 320 條 (竊盜罪)", 
-            intro: "沒同意拿東西算偷嗎？", 
-            original: "意圖不法所有取動產，為竊盜。", 
-            penalties: [{ type: "jail", label: "徒刑", value: "5 年以下" }], 
-            levels: { 
-                "B1-B2": { simplified: "意圖佔有他產。", question: "要件？", options: ["取走。", "缺錢。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "侵害支配權。", question: "未遂？", options: ["罰。", "不罰。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "刑事法律", 
-            id: "crm_337", 
-            name: "第 337 條 (拾金不昧)", 
-            intro: "撿錢不還警察犯法嗎？", 
-            original: "侵占遺失物，處罰金。", 
-            penalties: [{ type: "money", label: "罰金", value: "1.5 萬以下" }], 
-            levels: { 
-                "B1-B2": { simplified: "意圖佔有構成。", question: "做法？", options: ["送警。", "留著。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "處罰金。", question: "處罰？", options: ["罰金。", "拘役。"], answer: 0, feedback: "正確！" } 
-            } 
-        },
-        { 
-            category: "交通法律", 
-            id: "tra_35", 
-            name: "第 35 條 (酒駕重罰)", 
-            intro: "喝酒以後開車罰多少？", 
-            original: "酒測超標處三萬至十二萬罰鍰。", 
-            penalties: [{ type: "money", label: "罰鍰", value: "3萬 ~ 12萬" }, { type: "license", label: "吊扣", value: "1 ~ 2 年" }], 
-            levels: { 
-                "B1-B2": { simplified: "罰鍰與吊扣。", question: "內容？", options: ["金錢資格。", "警告。"], answer: 0, feedback: "正確！" }, 
-                "C1-C2": { simplified: "危險行政罰。", question: "性質？", options: ["行政管制。", "刑事。"], answer: 0, feedback: "正確！" } 
-            } 
-        }
     ];
 
     function initSelectors() {
@@ -998,21 +1148,50 @@
         window.scrollTo(0, 0);
     }
 
-    function renderGlossaryTable(filterText = "") {
-        const container = document.getElementById('glossary-table-content');
-        const keys = Object.keys(globalGlossary).sort().filter(key => {
-            const d = globalGlossary[key];
-            return key.includes(filterText) || d.pinyin.toLowerCase().includes(filterText.toLowerCase()) || d.en.toLowerCase().includes(filterText.toLowerCase());
-        });
-        if (keys.length === 0) {
-            container.innerHTML = '<p class="text-center text-slate-400 font-bold py-10">找不到相符詞彙</p>';
-            return;
-        }
-        container.innerHTML = keys.map(key => {
-            const d = globalGlossary[key];
-            return `<div class="glossary-row shadow-sm"><div class="glossary-term-col"><span class="text-2xl font-black text-blue-900">${key}</span><span class="text-xs text-slate-400 font-bold mt-1 tracking-widest uppercase">${d.pinyin}</span></div><div class="flex items-center"><span class="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 italic">${d.en}</span></div><div class="glossary-def-col">${d.def}</div></div>`;
-        }).join('');
-    }
+	function renderGlossaryTable(filterText = "") {
+		const container = document.getElementById('glossary-table-content');
+		if(!container) return;
+
+		// 1. 取得 Key 並「按英文翻譯 (en) 首字母」排序
+		// 我們抓取 globalGlossary 裡的 en 屬性進行比較
+		let keys = Object.keys(globalGlossary).sort((a, b) => {
+			const enA = globalGlossary[a].en.toLowerCase();
+			const enB = globalGlossary[b].en.toLowerCase();
+			return enA.localeCompare(enB);
+		});
+		
+		// 2. 過濾邏輯 (支援中文、拼音、英文關鍵字搜尋)
+		if (filterText) {
+			const lowerFilter = filterText.toLowerCase();
+			keys = keys.filter(key => 
+				key.includes(filterText) || 
+				globalGlossary[key].pinyin.toLowerCase().includes(lowerFilter) ||
+				globalGlossary[key].en.toLowerCase().includes(lowerFilter)
+			);
+		}
+
+		// 3. 如果找不到東西的提示
+		if (keys.length === 0) { 
+			container.innerHTML = '<p class="text-center text-slate-400 font-bold py-10 text-left">找不到相關詞彙</p>'; 
+			return; 
+		}
+
+		// 4. 渲染 HTML
+		container.innerHTML = keys.map(key => {
+			const d = globalGlossary[key];
+			return `
+				<div class="glossary-row shadow-sm text-left">
+					<div class="glossary-term-col">
+						<span class="text-2xl font-black text-blue-900">${key}</span>
+						<span class="text-xs text-slate-400 font-bold mt-1 tracking-widest uppercase">${d.pinyin}</span>
+					</div>
+					<div class="flex items-center">
+						<span class="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 italic">${d.en}</span>
+					</div>
+					<div class="glossary-def-col text-left text-base font-bold">${d.def}</div>
+				</div>`;
+		}).join('');
+	}
 
     function highlightTerms(text) {
         if (!text) return "";
