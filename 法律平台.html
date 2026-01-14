@@ -327,27 +327,25 @@
         <div class="bg-slate-50 p-10 rounded-[2.5rem] border shadow-inner max-h-[55vh] overflow-y-auto">
             <div class="space-y-10 text-sm font-bold text-slate-700">
                 <div class="border-l-4 border-blue-500 pl-6">
-                    <p class="text-blue-600 font-black text-lg mb-2">2026/01/12 (V0.d - Latest)</p>
+                    <p class="text-blue-600 font-black text-lg mb-2">2026/01/14 (V0.e - Latest)</p>
                     <ul class="list-disc space-y-2 text-base">
-						<li>新增「核准」等52個詞彙解釋</li>
-						<li>新增「入出國及移民法#23」等1條法條相關內容</li>						
+						<li>更新「申請」等84個詞彙解釋</li>
+						<li>調整了部分詞彙的英文翻譯</li>
+						<li>新增「入出國及移民法#31」等2條法條相關內容</li>						
                     </ul>
                 </div>
                 <div class="border-l-4 border-emerald-500 pl-6">
-                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/08 (V0.C)</p>
+                    <p class="text-emerald-600 font-black text-lg mb-2">2026/01/12 (V0.d)</p>
                     <ul class="list-disc space-y-2 text-base">
-                        <li>刪除了目前版本內尚未建置完成的法條及詞彙庫之佔位符</li>
-						<li>(08:54-V0.C-1)新增「符合」等17個詞彙解釋</li>
+						<li>新增「核准」等52個詞彙解釋</li>
+						<li>新增「入出國及移民法#23」等1條法條相關內容</li>		
                     </ul>
                 </div>
 				<div class="border-l-4 border-amber-500 pl-6">
-                    <p class="text-amber-600 font-black text-lg mb-2">2026/01/06 (V0.b))</p>
+                    <p class="text-amber-600 font-black text-lg mb-2">2026/01/08 (V0.C)</p>
                     <ul class="list-disc space-y-2 text-base">
-                        <li>1. 更改了法條原文及解釋內字典功能的呈現方式，具體變更如下：</li>
-						<li>(1) 詞彙將依順序規律變換顏色，以利辨識</li>
-						<li>(2) 僅在詞彙首次出現時添加字典功能</li>
-						<li>2. 新增「功能」等8個詞彙解釋</li>
-						<li>3. 更改了詞彙庫內詞彙的呈現順序，現在，詞彙庫內的詞彙會依英文首字母進行排序</li>
+                        <li>刪除了目前版本內尚未建置完成的法條及詞彙庫之佔位符</li>
+						<li>(08:54-V0.C-1)新增「符合」等17個詞彙解釋</li>
                     </ul>
                 </div>
             </div>
@@ -374,7 +372,7 @@
                 <section>
                     <h4 class="text-xl font-black text-slate-800 mb-4 border-l-6 border-blue-500 pl-4 uppercase tracking-tighter">⚖️ 版權聲明</h4>
                     <p class="leading-relaxed mb-4">
-                        本站法條原文引自全國法規資料庫。白話解釋、引言、題目之著作權歸開發小組所有。</br>
+                        本站法條原文引自全國法規資料庫。解釋、引言、題目之著作權歸開發小組所有。</br>
 						本站所有內容可供正常查詢、分享及教學使用，然禁止進行販售等金錢相關交易行為。
                     </p>
                     <div class="bg-red-50 p-6 rounded-3xl border-2 border-red-100 text-red-900 font-black">
@@ -482,433 +480,92 @@
 <script>
     let currentLevel = "B1-B2";
 
-    // 辭庫排版：一屬性一分行
+    // 詞彙庫
     const globalGlossary = {
-        "申請": { 
-            pinyin: "shēnqǐng", 
-            en: "apply", 
-            def: "向政府或機構正式提出要求。" 
-        },
-        "居留證": { 
-            pinyin: "jūliú zhèng", 
-            en: "residence permit", 
-            def: "讓外國人可以在台灣合法住一段時間的證件。" 
-        },
-        "外僑": { 
-            pinyin: "wàiqiáo", 
-            en: "foreign national", 
-            def: "住在台灣的外國人。" 
-        },
-        "簽證": { 
-            pinyin: "qiānzhèng", 
-            en: "visa", 
-            def: "進入一個國家前需要的許可文件。" 
-        },
-        "入境": { 
-            pinyin: "rùjìng", 
-            en: "entry into a country", 
-            def: "進入一個國家。" 
-        },
-        "合法": { 
-            pinyin: "héfǎ", 
-            en: "legal", 
-            def: "事情符合規定，是可以做的。" 
-        },
-        "資格": { 
-            pinyin: "zīgé", 
-            en: "qualification / eligibility", 
-            def: "一個人有沒有權利做某件事。" 
-        },
-        "移民署": { 
-            pinyin: "yímín shǔ", 
-            en: "National Immigration Agency", 
-            def: "政府管理外國人入境、居留的單位。" 
-        },
-        "證件": { 
-            pinyin: "zhèngjiàn", 
-            en: "official document / ID", 
-            def: "可以證明身分或資格的文件。" 
-        },
-        "功能": { 
-            pinyin: "gōngnéng", 
-            en: "function", 
-            def: "一個東西可以用來做什麼。" 
-        },
-        "有效": { 
-            pinyin: "yǒuxiào", 
-            en: "valid", 
-            def: "在規定的時間內，可以使用。" 
-        },
-        "停留": { 
-            pinyin: "tíngliú", 
-            en: "stay (short-term)", 
-            def: "在一個地方短時間待著，不是長住。" 
-        },
-        "居留": { 
-            pinyin: "jūliú", 
-            en: "reside / residence", 
-            def: "在一個地方住一段比較長的時間。" 
-        },
-        "許可": { 
-            pinyin: "xǔkě", 
-            en: "permission / permit", 
-            def: "政府或單位同意你做某件事。" 
-        },
-        "翌日": { 
-            pinyin: "yìrì", 
-            en: "the next day", 
-            def: "今天的下一天。" 
-        },
-        "逾": { 
-            pinyin: "yú", 
-            en: "exceed / over", 
-            def: "超過規定的時間或數量。" 
-        },
-        "免": { 
-            pinyin: "miǎn", 
-            en: "be exempt from / not need to", 
-            def: "不用做某件事。" 
-        },
-		"符合": {
-            pinyin: "fúhé", 
-            en: "meet / comply with", 
-            def: "和要求一樣，沒有問題。" 
-        },
-        "情況": {
-            pinyin: "qíngkuàng", 
-            en: "situation / condition", 
-            def: "事情發生時的狀態或原因。" 
-        },
-        "規定": {
-            pinyin: "guīdìng", 
-            en: "regulation / rule", 
-            def: "政府或單位訂下的規則。" 
-        },
-        "身分": {
-            pinyin: "shēnfèn", 
-            en: "legal status / identity", 
-            def: "一個人在法律上的身份。" 
-        },
-        "取得": {
-            pinyin: "qǔdé", 
-            en: "obtain / acquire", 
-            def: "經過申請後得到。" 
-        },
-        "配偶": {
-            pinyin: "pèiǒu", 
-            en: "spouse", 
-            def: "法律上的另一伴。" 
-        },
-        "子女": {
-            pinyin: "zǐ nǚ", 
-            en: "children", 
-            def: "自己的孩子，包括兒子和女兒。" 
-        },
-        "條件": {
-            pinyin: "tiáojiàn", 
-            en: "condition / requirement", 
-            def: "一定要先做到的要求。" 
-        },
-        "之後": {
-            pinyin: "zhīhòu", 
-            en: "after / afterwards", 
-            def: "某一個時間點以後。" 
-        },
-        "相同": {
-            pinyin: "xiāngtóng", 
-            en: "same / identical", 
-            def: "兩個東西一樣，沒有差別。" 
-        },
-        "並": {
-            pinyin: "bìng", 
-            en: "and / also", 
-            def: "連接兩件同時發生的事情。" 
-        },
-        "限制": {
-            pinyin: "xiànzhì", 
-            en: "restriction / limit", 
-            def: "有規則，不能自由做。" 
-        },
-        "投資": {
-            pinyin: "tóuzī", 
-            en: "investment", 
-            def: "把錢或資源用來做生意。" 
-        },
-        "相關": {
-            pinyin: "xiāngguān", 
-            en: "related / relevant", 
-            def: "和某件事情有關係。" 
-        },
-        "特定": {
-            pinyin: "tèdìng", 
-            en: "specific / designated", 
-            def: "指定的，不是全部。" 
-        },
-        "經營": {
-            pinyin: "jīngyíng", 
-            en: "operate / run (a business)", 
-            def: "管理和發展一個事業。" 
-        },
-        "延期": {
-            pinyin: "yánqí", 
-            en: "postpone / extend (time)", 
-            def: "時間往後推，不是現在。" 
-        },
-		        "核准": {
-            pinyin: "hézhǔn", 
-            en: "approve", 
-            def: "政府看過後說可以。" 
-        },
-        "使用": {
-            pinyin: "shǐyòng", 
-            en: "use", 
-            def: "拿來用。" 
-        },
-        "項": {
-            pinyin: "xiàng", 
-            en: "item / clause", 
-            def: "條文或內容中的一個部分。" 
-        },
-        "主管": {
-            pinyin: "zhǔguǎn", 
-            en: "in charge", 
-            def: "負責管理的人或單位。" 
-        },
-        "之": {
-            pinyin: "zhī", 
-            en: "of (formal)", 
-            def: "表示「的」，多用在正式文件。" 
-        },
-        "機關": {
-            pinyin: "jīguān", 
-            en: "government agency", 
-            def: "政府的單位。" 
-        },
-        "地區": {
-            pinyin: "dìqū", 
-            en: "area / region", 
-            def: "一個地方或區域。" 
-        },
-        "目前": {
-            pinyin: "mùqián", 
-            en: "currently", 
-            def: "現在這個時間。" 
-        },
-        "根據": {
-            pinyin: "gēnjù", 
-            en: "according to / based on", 
-            def: "依照某個法律或資料。" 
-        },
-        "及": {
-            pinyin: "jí", 
-            en: "and", 
-            def: "連接前後兩個內容，表示「和」。" 
-        },
-        "永久": {
-            pinyin: "yǒngjiǔ", 
-            en: "permanent", 
-            def: "沒有時間限制，一直有效。" 
-        },
-        "款": {
-            pinyin: "kuǎn", 
-            en: "paragraph / sub-clause", 
-            def: "法律條文中的一小段。" 
-        },
-        "戶籍": {
-            pinyin: "hùjí", 
-            en: "household registration", 
-            def: "政府記錄的住家資料。" 
-        },
-        "未滿": {
-            pinyin: "wèimǎn", 
-            en: "under / not yet reached", 
-            def: "還不到某個年齡或時間。" 
-        },
-        "人才": {
-            pinyin: "réncái", 
-            en: "talent / skilled person", 
-            def: "有專業能力的人。" 
-        },
-        "教學": {
-            pinyin: "jiàoxué", 
-            en: "teaching", 
-            def: "教書和上課。" 
-        },
-        "專業": {
-            pinyin: "zhuānyè", 
-            en: "professional / expertise", 
-            def: "特別學過、很熟的能力。" 
-        },
-        "原本": {
-            pinyin: "yuánběn", 
-            en: "originally", 
-            def: "一開始就是這樣。" 
-        },
-        "事業": {
-            pinyin: "shìyè", 
-            en: "career / business", 
-            def: "工作或公司。" 
-        },
-        "與": {
-            pinyin: "yǔ", 
-            en: "and / with", 
-            def: "表示「和」，比較正式。" 
-        },
-        "從事": {
-            pinyin: "cóngshì", 
-            en: "engage in", 
-            def: "做某一種工作或活動。" 
-        },
-        "持續": {
-            pinyin: "chíxù", 
-            en: "continue", 
-            def: "一直做，沒有停。" 
-        },
-        "以免": {
-            pinyin: "yǐmiǎn", 
-            en: "in order to avoid", 
-            def: "為了不要發生不好的事。" 
-        },
-        "勞動": {
-            pinyin: "láodòng", 
-            en: "labor / work", 
-            def: "工作、付出體力或時間。" 
-        },
-        "國民": {
-            pinyin: "guómín", 
-            en: "citizen", 
-            def: "一個國家的人民。" 
-        },
-        "就業": {
-            pinyin: "jiùyè", 
-            en: "employment", 
-            def: "有工作。" 
-        },
-        "期限": {
-            pinyin: "qīxiàn", 
-            en: "time limit / period", 
-            def: "可以使用的時間。" 
-        },
-        "機構": {
-            pinyin: "jīgòu", 
-            en: "institution / organization", 
-            def: "組織或單位。" 
-        },
-        "行政": {
-            pinyin: "xíngzhèng", 
-            en: "administrative", 
-            def: "政府的管理工作。" 
-        },
-        "中央": {
-            pinyin: "zhōngyāng", 
-            en: "central (government)", 
-            def: "國家層級，不是地方。" 
-        },
-        "教育部": {
-            pinyin: "jiàoyù bù", 
-            en: "Ministry of Education", 
-            def: "管理學校和教育的政府單位。" 
-        },
-        "於": {
-            pinyin: "yú", 
-            en: "at / in (formal)", 
-            def: "表示「在」或「於某時間」，很正式。" 
-        },
-        "居住": {
-            pinyin: "jūzhù", 
-            en: "live / reside", 
-            def: "住在某個地方。" 
-        },
-        "註冊": {
-            pinyin: "zhùcè", 
-            en: "register", 
-            def: "把資料登記在系統裡" 
-        },
-        "持": {
-            pinyin: "chí", 
-            en: "hold / possess", 
-            def: "拿著或擁有。" 
-        },
-        "進行": {
-            pinyin: "jìnxíng", 
-            en: "carry out / conduct", 
-            def: "正在做某件事。" 
-        },
-        "就讀": {
-            pinyin: "jiùdú", 
-            en: "be enrolled (in school)", 
-            def: "在學校念書。" 
-        },
-        "允許": {
-            pinyin: "yǔnxǔ", 
-            en: "allow / permit", 
-            def: "同意，可以做。" 
-        },
-        "確認": {
-            pinyin: "quèrèn", 
-            en: "confirm", 
-            def: "再檢查一次，確定是真的。" 
-        },
-        "認定": {
-            pinyin: "rèndìng", 
-            en: "officially determine", 
-            def: "政府正式判定。" 
-        },
-        "任意": {
-            pinyin: "rènyì", 
-            en: "arbitrary / at will", 
-            def: "隨便、沒有規定。" 
-        },
-        "原文": {
-            pinyin: "yuánwén", 
-            en: "original text", 
-            def: "法律或文件原來的文字。" 
-        },
-        "尊": {
-            pinyin: "zūn", 
-            en: "respect (formal)", 
-            def: "表示尊敬，多用在正式用語。" 
-        },
-        "認可": {
-            pinyin: "rènkě", 
-            en: "recognize / approve", 
-            def: "正式同意、承認。" 
-        },
-        "附設": {
-            pinyin: "fùshè", 
-            en: "affiliated / attached", 
-            def: "另外加在一起的。" 
-        },
-        "延攬": {
-            pinyin: "yánlǎn", 
-            en: "recruit (talent)", 
-            def: "請專業的人來工作。" 
-        },
-        "招收": {
-            pinyin: "zhāoshōu", 
-            en: "admit / recruit", 
-            def: "學校或單位收學生或人員。" 
-        },
-        "大專院校": {
-            pinyin: "dàzhuān yuàn xiào", 
-            en: "colleges and universities", 
-            def: "大學和專科學校。" 
-        },
-        "憑證": {
-            pinyin: "píngzhèng", 
-            en: "certificate / credential", 
-            def: "用來證明身分或資格的文件。" 
-        },
-        "親屬": {
-            pinyin: "qīnshǔ", 
-            en: "relative / family member", 
-            def: "家人，如配偶、子女。" 
-        },
-        "備註": {
-            pinyin: "bèizhù", 
-            en: "note / remark", 
-            def: "補充說明的內容。" 
-        }
+		"申請": { pinyin: "shēnqǐng", en: "apply", def: "向政府或機構正式提出要求。" },
+		"居留證": { pinyin: "jūliú zhèng", en: "residence permit", def: "讓外國人可以在台灣合法住一段時間的證件。" },
+		"外僑": { pinyin: "wàiqiáo", en: "foreign national", def: "住在台灣的外國人。" },
+		"簽證": { pinyin: "qiānzhèng", en: "visa", def: "進入一個國家前需要的許可文件。" },
+		"入境": { pinyin: "rùjìng", en: "entry", def: "進入一個國家。" },
+		"合法": { pinyin: "héfǎ", en: "legal", def: "事情符合規定，是可以做的。" },
+		"資格": { pinyin: "zīgé", en: "qualification / eligibility", def: "一個人有沒有權利做某件事。" },
+		"移民署": { pinyin: "yímín shǔ", en: "National Immigration Agency", def: "政府管理外國人入境、居留的單位。" },
+		"證件": { pinyin: "zhèngjiàn", en: "official document / ID", def: "可以證明身分或資格的文件。" },
+		"功能": { pinyin: "gōngnéng", en: "function", def: "一個東西可以用來做什麼。" },
+		"有效": { pinyin: "yǒuxiào", en: "valid", def: "在規定的時間內，可以使用。" },
+		"停留": { pinyin: "tíngliú", en: "stay (short-term)", def: "在一個地方短時間待著，不是長住。" },
+		"居留": { pinyin: "jūliú", en: "reside / residence", def: "在一個地方住一段比較長的時間。" },
+		"許可": { pinyin: "xǔkě", en: "permission / permit", def: "政府或單位同意你做某件事。" },
+		"翌日": { pinyin: "yìrì", en: "the next day", def: "今天的下一天。" },
+		"逾": { pinyin: "yú", en: "exceed / over", def: "超過規定的時間或數量。" },
+		"免": { pinyin: "miǎn", en: "be exempt from / not need to", def: "不用做某件事。" },
+		"符合": { pinyin: "fúhé", en: "meet / comply with", def: "和要求一樣，沒有問題。" },
+		"情況": { pinyin: "qíngkuàng", en: "situation / condition", def: "事情發生時的狀態或原因。" },
+		"規定": { pinyin: "guīdìng", en: "regulation / rule", def: "政府或單位訂下的規則。" },
+		"身分": { pinyin: "shēnfèn", en: "legal status / identity", def: "一個人在法律上的身份。" },
+		"取得": { pinyin: "qǔdé", en: "obtain / acquire", def: "經過申請後得到。" },
+		"配偶": { pinyin: "pèiǒu", en: "spouse", def: "法律上的另一伴。" },
+		"子女": { pinyin: "zǐ nǚ", en: "children", def: "自己的孩子，包括兒子和女兒。" },
+		"條件": { pinyin: "tiáojiàn", en: "condition / requirement", def: "一定要先做到的要求。" },
+		"之後": { pinyin: "zhīhòu", en: "after / afterwards", def: "某一個時間點以後。" },
+		"相同": { pinyin: "xiāngtóng", en: "same / identical", def: "兩個東西一樣，沒有差別。" },
+		"並且": { pinyin: "bìngqiě", en: "and / also", def: "連接兩件同時發生的事情。" },
+		"並": { pinyin: "bìng", en: "and / also", def: "連接兩件同時發生的事情。" },
+		"限制": { pinyin: "xiànzhì", en: "restriction / limit", def: "有規則，不能自由做。" },
+		"投資": { pinyin: "tóuzī", en: "investment", def: "把錢或資源用來做生意。" },
+		"相關": { pinyin: "xiāngguān", en: "related / relevant", def: "和某件事情有關係。" },
+		"特定": { pinyin: "tèdìng", en: "specific / designated", def: "指定的，不是全部。" },
+		"經營": { pinyin: "jīngyíng", en: "operate / run (a business)", def: "管理和發展一個事業。" },
+		"延期": { pinyin: "yánqí", en: "postpone / extend (time)", def: "時間往後推，不是現在。" },
+		"核准": { pinyin: "hézhǔn", en: "approve", def: "政府看過後說可以。" },
+		"使用": { pinyin: "shǐyòng", en: "use / using", def: "拿來用。" },
+		"項": { pinyin: "xiàng", en: "item / clause", def: "條文或內容中的一個部分。" },
+		"主管": { pinyin: "zhǔguǎn", en: "in charge", def: "負責管理的人或單位。" },
+		"之": { pinyin: "zhī", en: "of (formal)", def: "表示「的」，多用在正式文件。" },
+		"機關": { pinyin: "jīguān", en: "government agency", def: "政府的單位。" },
+		"地區": { pinyin: "dìqū", en: "area / region", def: "一個地方或區域。" },
+		"目前": { pinyin: "mùqián", en: "currently", def: "現在這個時間。" },
+		"根據": { pinyin: "gēnjù", en: "according to / based on", def: "依照某個法律或資料。" },
+		"及": { pinyin: "jí", en: "and", def: "連接前後兩個內容，表示「和」。" },
+		"永久": { pinyin: "yǒngjiǔ", en: "permanent", def: "沒有時間限制，一直有效。" },
+		"款": { pinyin: "kuǎn", en: "paragraph / sub-clause", def: "法律條文中的一小段。" },
+		"戶籍": { pinyin: "hùjí", en: "household registration", def: "政府記錄的住家資料。" },
+		"未滿": { pinyin: "wèimǎn", en: "under / not yet reached", def: "還不到某個年齡或時間。" },
+		"人才": { pinyin: "réncái", en: "talent / skilled person", def: "有專業能力的人。" },
+		"教學": { pinyin: "jiàoxué", en: "teaching", def: "教書和上課。" },
+		"專業": { pinyin: "zhuānyè", en: "professional / expertise", def: "特別學過、很熟的能力。" },
+		"原本": { pinyin: "yuánběn", en: "originally", def: "一開始就是這樣。" },
+		"事業": { pinyin: "shìyè", en: "enterprise", def: "工作或公司。" },
+		"與": { pinyin: "yǔ", en: "and / with", def: "表示「和」，比較正式。" },
+		"從事": { pinyin: "cóngshì", en: "engage in", def: "做某一種工作或活動。" },
+		"持續": { pinyin: "chíxù", en: "continue", def: "一直做，沒有停。" },
+		"以免": { pinyin: "yǐmiǎn", en: "in order to avoid", def: "為了不要發生不好的事。" },
+		"勞動": { pinyin: "láodòng", en: "labor / work", def: "工作、付出體力或時間。" },
+		"國民": { pinyin: "guómín", en: "national", def: "一個國家的人民。" },
+		"就業": { pinyin: "jiùyè", en: "employment", def: "有工作。" },
+		"機構": { pinyin: "jīgòu", en: "institution / organization", def: "組織或單位。" },
+		"行政": { pinyin: "xíngzhèng", en: "administrative", def: "政府的管理工作。" },
+		"中央": { pinyin: "zhōngyāng", en: "central (government)", def: "國家層級，不是地方。" },
+		"教育部": { pinyin: "jiàoyù bù", en: "Ministry of Education", def: "管理學校和教育的政府單位。" },
+		"於": { pinyin: "yú", en: "at / in (formal)", def: "表示「在」或「於某時間」，很正式。" },
+		"居住": { pinyin: "jūzhù", en: "live / reside", def: "住在某個地方。" },
+		"註冊": { pinyin: "zhùcè", en: "register", def: "把資料登記在系統裡" },
+		"持": { pinyin: "chí", en: "hold / possess", def: "拿著或擁有。" },
+		"進行": { pinyin: "jìnxíng", en: "carry out / conduct", def: "正在做某件事。" },
+		"就讀": { pinyin: "jiùdú", en: "be enrolled (in school)", def: "在學校念書。" },
+		"確認": { pinyin: "quèrèn", en: "confirm", def: "再檢查一次，確定是真的。" },
+		"認定": { pinyin: "rèndìng", en: "officially determine", def: "政府正式判定。" },
+		"任意": { pinyin: "rènyì", en: "arbitrary / at will", def: "隨便、沒有規定。" },
+		"原文": { pinyin: "yuánwén", en: "original text", def: "法律或文件原來的文字。" },
+		"尊": { pinyin: "zūn", en: "respect (formal)", def: "表示尊敬，多用在正式用語。" },
+		"認可": { pinyin: "rènkě", en: "recognize / approve", def: "正式同意、承認。" },
+		"附設": { pinyin: "fùshè", en: "affiliated / attached", def: "另外加在一起的。" },
+		"延攬": { pinyin: "yánlǎn", en: "recruit (talent)", def: "請專業的人來工作。" },
+		"招收": { pinyin: "zhāoshōu", en: "admit / recruit", def: "學校或單位收學生或人員。" },
+		"就業": { pinyin: "jiùyè", en: "employment", def: "有工作。" },
+		"憑證": { pinyin: "píngzhèng", en: "certificate / credential", def: "用來證明身分或資格的文件。" },
+		"親屬": { pinyin: "qīnshǔ", en: "relative / family member", def: "家人，如配偶、子女。" },
+		"備註": { pinyin: "bèizhù", en: "note / remark", def: "補充說明的內容。" }
     };
 
     // 法規
@@ -922,7 +579,8 @@
 			
 2. 依前項規定取得居留許可者，應於入國後之翌日起算三十日內，向移民署申請外僑居留證。但申請取得工作許可、居留簽證、外僑居留證及重入國許可四證合一之有效證件，或其他已含有外僑居留證功能之證件者，得免申請外僑居留證。
 
-3. 外僑居留證之有效期間，自許可之翌日起算，最長不得逾三年。`,             levels: { 
+3. 外僑居留證之有效期間，自許可之翌日起算，最長不得逾三年。`,             
+			levels: { 
                 "B1-B2": { 
 					simplified: `如果你有簽證，或是可以用免簽證的方式來台灣，在移民署同意後，你就可以合法地入境台灣，也可以在台灣停留或居留。
 					
@@ -989,7 +647,7 @@
 三、在教育部認可大專校院附設之華語教學機構就讀滿四個月，並繼續註冊三個月以上之學生。`, 
             levels: { 
                 "B1-B2": { 
-			simplified: `這一條是在說：如果你本來是來台灣停留，什麼情況下可以申請改成居留，並拿到外僑居留證。
+					simplified: `這一條是在說：如果你本來是來台灣停留，什麼情況下可以申請改成居留，並拿到外僑居留證。
 			
 如果你是外國人，拿著停留時間六十日以上的有效簽證入境，而且你的簽證上沒有寫不能延期或其他限制，在符合規定的情況下，就可以向移民署申請居留。
 
@@ -1004,7 +662,7 @@
                     feedback: "法律規定，只要持有符合條件的停留簽證，並因工作、家庭或就學等原因符合規定，就可以向移民署申請居留，不是只有一開始拿居留簽證的人才能申請。" 
                 },
                 "C1-C2": { 
-                    simplified:`1. 外國人使用停留期限六十日以上之有效簽證入境，並且簽證沒有被備註不得延期或其他限制時，如果符合以下任意一項資格，就可以跟移民署申請居留。經過核准，核發外僑居留證：
+                    simplified:`1. 外國人使用停留期限六十日以上的有效簽證入境，並且簽證沒有被備註不得延期或其他限制時，如果符合以下任意一項資格，就可以跟移民署申請居留。經過核准，核發外僑居留證：
 					
 （一）配偶是目前居住於臺灣地區並設有戶籍的台灣國民，或經過核准居留或永久居留的外國人。
 
@@ -1027,6 +685,124 @@
                     options: ["不得以免簽證身分申請居留。", "得向移民署申請居留。"], 
                     answer: 1, 
                     feedback: "法律明確規定，符合工作許可條件者，即使以免簽證入境，仍可申請居留，並非一定要先離境或更換簽證。" 
+                } 
+            } 
+        },
+        { 
+            category: "入出國及移民法", 
+            id: "imm_29", 
+            name: "第 29 條 (居留時從事其他行為)", 
+            intro: "我可以在台灣做和居留原因不同的事情嗎？", 
+			original: `1. 外國人在我國停留、居留期間，不得從事與許可停留、居留原因不符之活動。但合法居留者，其請願及合法集會遊行，不在此限。
+			
+2. 任何人不得使外國人從事前項本文之活動。`, 
+            levels: { 
+                "B1-B2": { 
+					simplified: `這條法律告訴我們，你在台灣停留或居留時，只可以做當初申請居留證時登記的事，不可以做和停留或居留目的不同的事情。不過，只要是合法居留，你還是可以請願、參加合法的集會和遊行。
+					
+另外，法律也規定，任何人都不能要求或安排外國人從事不符合其停留或居留原因的活動。`,                     
+			question: "外國人在台灣居留期間，下列哪一個行為是不被允許的？", 
+                    options: ["做和申請居留的原因沒有關係的事情。", "參加合法的集會。"], 
+                    answer: 1, 
+                    feedback: "外國人在台灣停留或居留期間，只能做當初申請停留或居留原因的事。如果做其他的事情，就可能違反規定。" 
+                },
+                "C1-C2": { 
+                    simplified:`1. 外國人在台灣停留或居留的時候，只能做符合申請的停留或居留原因的活動，不可以做不相關的活動。但是，合法居留的外國人，可以參加依照法律進行得請願、集會或遊行。
+					
+2. 任何人都不可以安排或要求外國人參加前面禁止的活動。`,  
+                    question: "外國人 Leo 因為「依親」在臺灣居留。在朋友的邀請下，他協助短期經營網路商店，負責商品上架與客服回覆。\n\n依照規定，下列判斷何者正確？", 
+                    options: ["這可能被認為是和居留原因不同的行為。", "只要不是正式受僱，就一定不會違法。"], 
+                    answer: 0, 
+                    feedback: "是否構成違規，重點在活動內容是否和許可的居留原因相同，而不是是否具有正式受僱關係。" 
+                } 
+            } 
+        },
+        { 
+            category: "入出國及移民法", 
+            id: "imm_31", 
+            name: "第 31 條 (外僑居留證延期資格和變更住址)", 
+            intro: "我的居留證要到期了，我可以延長居留嗎？\n 💡 我搬家了，需要告訴政府嗎？", 
+			original: `1. 外國人停留或居留期限屆滿前，有繼續停留或居留之必要時，應向移民署申請延期。
+			
+2.依前項規定申請居留延期經許可者，其外僑居留證之有效期間應自原居留屆滿之翌日起延期，最長不得逾三年。
+
+3. 外國人逾期居留未滿三十日，原申請居留原因仍繼續存在者，經依第七十四條之一第二項規定處罰後，得向移民署重新申請居留；其申請永久居留者，核算在臺灣地區居留期間，應扣除一年。
+
+4. 移民署對於外國人於居留期間內，居留原因消失者，廢止其居留許可，並註銷其外僑居留證。但有下列各款情形之一者，得准予繼續居留：
+
+一、因依親對象死亡。
+
+二、外國人為居住臺灣地區設有戶籍國民之配偶，因遭受家庭暴力離婚，且未再婚。
+
+三、外國人於離婚後對在臺灣地區已設有戶籍未成年子女，有撫育事實、行使負擔權利義務或會面交往。
+
+四、因居留許可被廢止而遭強制出國，對在臺灣地區已設有戶籍未成年子女造成重大且難以回復損害之虞。
+
+五、外國人與本國雇主發生勞資爭議，正在進行爭訟程序。
+
+六、外國人發生職業災害尚在治療中。
+
+七、刑事案件之被害人、證人有協助偵查或審理之必要，經檢察官或法官認定其到庭或作證有助於案件之偵查或審理。
+
+八、依第二十一條第一項規定禁止出國。
+
+九、外國人以配偶為依親對象，取得居留許可，其依親對象為我國國民，於離婚後三十日內與原依親對象再婚。
+
+5. 依前項第三款、第四款規定准予繼續居留者，其子女已成年，得准予繼續居留。
+
+6. 外國人於居留期間，變更居留住址或服務處所時，應於事實發生之翌日起算三十日內，向移民署申請辦理變更登記。`, 
+            levels: { 
+                "B1-B2": { 
+					simplified: `這條法律告訴我們，如果你可以停留或居留的時間要結束了，但你因為工作、家庭或其他合理的原因，需要繼續留在台灣，就一定要在結束以前，主動跟移民署申請延期，不可以等時間到了才處理。
+
+
+如果你的申請通過了，你可以留在台灣的時間，會從原本結束的隔天開始延長，但延長的時間不可以超過三年。
+
+如果你已經逾期居留，但時間還沒有超過30天，而且申請居留的原因仍然存在，在接受處罰後，你仍然可以向移民署重新申請居留。不過，如果之後你想要申請永久居留，你累積的住在台灣的時間，會減少一年。
+
+相反，如果你在居留期間，原本申請的原因不存在了(例如離婚、離職)，你的外僑居留證會被註銷。但是，為了避免有些人遇到沒有辦法馬上處理的狀況，在特定狀況下，儘管申請的原因不存在了，還是可以繼續留在台灣，例如：依親對象過世、離婚後需要照顧留在台灣的未成年子女、因為工作受傷而在治療中等等。如果你是因為照顧子女所以留在台灣，即使未來子女成年了，還是可以繼續留在台灣。
+
+另外，這條法律也提到，如果在居留期間，你的住址或工作地點不一樣了，必須在30天內去移民署申請資料變更。`,                     
+			question: "外國人如果還需要繼續留在台灣，正確的做法是哪一個？", 
+                    options: ["等居留期限過期之後，再向移民署說明原因。", "在居留期限到期之前，向移民署申請延期。"], 
+                    answer: 1, 
+                    feedback: "法律規定，如果外國人有繼續停留或居留的需要，必須在期限到期前就向移民署申請延期。" 
+                },
+                "C1-C2": { 
+                    simplified:`1. 外國人在停留或居留期限到期之前，如果需要繼續停留或居留，應該跟移民署申請延期。
+
+2. 依照前一項規定申請居留延期並且經過核准者，其外僑居留證的有效期間，應該自原居留期限屆滿的隔日起算，延期期間最長不得超過三年。
+
+3. 外國人逾期居留未滿三十日，而且原本作為居留申請基礎的原因仍然存在的人，在依照第七十四條之一第二項規定接受處罰之後，可以向移民署重新申請居留；但是，如果未來申請永久居留，在計算已經在臺灣的居留時間時，會被扣除一年。
+
+4. 移民署在外國人居留期間內，如果認定其居留原因已經消失，可以廢止其居留許可，並且註銷其外僑居留證。但是，符合下列情形之一者，仍然可以准許繼續居留：
+
+（一）因為依親對象死亡。
+
+（二）外國人為設有臺灣戶籍之我國國民的配偶，因為遭受家庭暴力而離婚，且未再婚。
+
+（三）外國人在離婚之後，對在臺灣地區設有戶籍的未成年子女，實際負責撫養，並且行使或負擔權利義務，或進行會面與探視。
+
+
+（四）如果被強制出國，對留在臺灣的未成年子女，可能造成重大且難以回復的損害的人。
+
+（五）外國人與臺灣雇主之間發生爭議，且相關訴訟或爭議程序仍然在進行中。
+
+（六）外國人發生職業災害，目前仍然在接受治療。
+
+（七）外國人身分屬於刑事案件的被害人或證人，經檢察官或法官認定，其到庭或作證對案件的偵查或審理具有必要性。
+
+（八）依照法律規定列為禁止出國對象。
+
+（九）外國人以配偶身分取得居留許可，其依親對象為我國國民，並且在離婚後三十日內與原本的配偶再婚。
+
+5. 依照前項第三款或第四款規定而准許繼續居留者，在子女成年後仍然可以繼續居留。
+
+6. 外國人在居留期間，如果發生居留住址或工作地點的改變，應該在改變發生的隔日起三十日內，向移民署申請辦理變更登記。`,  
+                    question: "Alex 的外僑居留證在 6 月 30 日到期，因為工作還沒有結束，他在 7 月 2 日向移民署提出延期申請。\n\n依照規定，下列判斷何者正確？", 
+                    options: ["Alex 未在期限屆滿之前申請延期，已不符合延期申請的時點要求。", "Alex 的作法符合規定，只要提出申請即可。"], 
+                    answer: 0, 
+                    feedback: "延期申請應該在停留或居留期限到期之前提出，期限到期之後才申請，並不符合規定。" 
                 } 
             } 
         },
@@ -1133,7 +909,7 @@
         } else {
             if(selectedLabel) selectedLabel.classList.add('selected-wrong');
             fb.className = 'mt-8 p-8 rounded-3xl font-black text-xl text-left shadow-lg bg-red-100 text-red-800 border-2 border-red-500';
-            fb.innerText = `❌ 答錯了！請點擊文中藍色詞彙尋找線索。`;
+            fb.innerText = `❌ 答錯了！${content.feedback}`;
         }
     }
 
